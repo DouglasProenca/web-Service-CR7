@@ -1,0 +1,38 @@
+package com.webServiceCR7Imports.webServiceCR7.Enum;
+
+public enum CategoryTemplateshttp implements httpAdressTemplatInterface {
+
+	painel {
+
+		@Override
+		public String getAdress() {
+			return "category/painel-category";
+		}
+
+	},
+
+	edit {
+
+		@Override
+		public String getAdress() {
+			return "category/editar-category";
+		}
+	},
+	
+	registrer {
+
+		@Override
+		public String getAdress() {
+			return "category/cadastro-category";
+		}
+	},
+	
+	redirect {
+
+		@Override
+		public String getAdress() {
+			return "redirect:/admin/category/";
+		}
+	}
+
+}
