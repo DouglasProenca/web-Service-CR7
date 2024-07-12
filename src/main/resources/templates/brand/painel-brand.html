@@ -19,69 +19,98 @@
    </head>
    <body>
       <nav class="navbar navbar-expand-sm bg-light p-3 shadow-sm">
-         <div class="container">
-            <a class="navbar-brand text-dark" href="/admin">
-            CR7Imports <img src="/assets/img/System-computer-icon.png" width="32" height="32">
-            </a>
-            <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
-            <i class="fas fa-bars" style="color: white;"></i>
-            </button>
-            <div class="navbar-collapse collapse justify-content-end" id="navbar">
-               <ul class="navbar-nav ml-auto">
-                  <li class="nav-item">
-                     <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/product">E-Mail</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/brand">Marca</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/category">Categoria</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/product">Produtos</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/usuario">Usuários</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin">Admin</a>
-                  </li>
-                  <li class="nav-item">
-                     <a aria-current="page" href="/logout">
-                     <button type="button" class="btn btn-outline-danger">Logout</button>
-                     </a>
-                  </li>
-               </ul>
-            </div>
+         <a class="navbar-brand text-dark" href="/admin">
+         CR7Imports <img src="/assets/img/System-computer-icon.png" width="32" height="32">
+         </a>
+         <button class="navbar-toggler bg-dark" data-toggle="collapse" data-target="#navbar">
+         <i class="fas fa-bars" style="color: white;"></i>
+         </button>
+         <div class="navbar-collapse collapse justify-content-end" id="navbar">
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/product">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                     </svg>
+                     E-Mail
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/brand">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-heading" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                        <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
+                     </svg>
+                     Marca
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/category">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                        <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0"/>
+                        <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z"/>
+                     </svg>
+                     Categoria
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/product">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-dash" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M5.5 10a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5"/>
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                     </svg>
+                     Produtos
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link text-dark active mr-3" aria-current="page" href="/admin/usuario">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                     </svg>
+                     Usuários
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="#" onclick="confirmacao()" class="btn btn-outline-danger" sec:authorize="isAuthenticated()">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                     </svg>
+                     Logout
+                  </a>
+                  <form id="form-login" action="/admin/logout" method="post"></form>
+               </li>
+            </ul>
          </div>
       </nav>
-      <div class="background-gradient-painel">
+      <div class="p-4 mb-2 bg-dark text-white">
       <div class="d-flex justify-content-center">
-         <div class="card col-sm-10 col-md-10 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+         <div class="card col-sm-12 col-md-8 col-lg-10 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
             <div class="text-typing text-muted mb-5">
                <p>Lista de Marcas</p>
             </div>
             <hr class="mb-5">
             <form th:action="@{/admin/brand/find}" class="form-group" th:object="${principal}">
-               <label for="cadastro-usuario">Nome da Marca</label>
                <div class="row">
-                  <input type="text" class="form-control border-0 bg-light col-10 mr-5" id="cadastro-usuario" name="brand" placeholder="Digite o nome da marca desejada">
-                  <a href="">
-                  <button type="submit" class="col-12 btn btn-primary">Pesquisar</button>   
-                  </a>
+                  <input type="text" class="form-control border-0 bg-light col-9 mr-2 mb-2 mb-md-0" id="cadastro-usuario" name="brand" placeholder="Digite o nome da marca desejada">
+                  <button type="submit" class="btn btn-primary col-12 col-md-2">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                     </svg>
+                  </button>
                </div>
             </form>
             <div class="table-responsive">
-               <table class="table">
+               <table class="table table-striped">
                   <thead>
                      <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Pais</th>
-                        <th>Usuario</th>
+                        <th>País</th>
+                        <th>Usuário</th>
                         <th>Data</th>
-                        <th>Editar</th>
-                        <th>Deletar</th>
+                        <th></th>
+                        <th></th>
                      </tr>
                   </thead>
                   <tbody>
@@ -101,13 +130,24 @@
                   </tbody>
                </table>
             </div>
-            <form th:action="@{/admin/brand/form}" method="GET">
-               <button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">+</button>    
-            </form>
-            <form th:action="@{/admin/brand/excel}" method="GET">
-               <button type="submit" class="btn btn-outline-primary col-lg-1 mt-5"><img src="/assets/img/excel-logo.png"></button>    
-            </form>
+            <a th:href="@{/admin/brand/form}">
+               <button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-plus" viewBox="0 0 16 16">
+                     <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7"/>
+                     <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+                     <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+                  </svg>
+               </button>
+            </a>
+            <a th:href="@{/admin/brand/excel}">
+               <button type="submit" class="btn btn-outline-primary col-lg-1 mt-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-xls" viewBox="0 0 16 16">
+                     <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM6.472 15.29a1.2 1.2 0 0 1-.111-.449h.765a.58.58 0 0 0 .254.384q.106.073.25.114.143.041.319.041.246 0 .413-.07a.56.56 0 0 0 .255-.193.5.5 0 0 0 .085-.29.39.39 0 0 0-.153-.326q-.152-.12-.462-.193l-.619-.143a1.7 1.7 0 0 1-.539-.214 1 1 0 0 1-.351-.367 1.1 1.1 0 0 1-.123-.524q0-.366.19-.639.19-.272.527-.422.338-.15.777-.149.457 0 .78.152.324.153.5.41.18.255.2.566h-.75a.56.56 0 0 0-.12-.258.6.6 0 0 0-.247-.181.9.9 0 0 0-.369-.068q-.325 0-.513.152a.47.47 0 0 0-.184.384q0 .18.143.3a1 1 0 0 0 .405.175l.62.143q.326.075.566.211a1 1 0 0 1 .375.358q.135.222.135.56 0 .37-.188.656a1.2 1.2 0 0 1-.539.439q-.351.158-.858.158-.381 0-.665-.09a1.4 1.4 0 0 1-.478-.252 1.1 1.1 0 0 1-.29-.375m-2.945-3.358h-.893L1.81 13.37h-.036l-.832-1.438h-.93l1.227 1.983L0 15.931h.861l.853-1.415h.035l.85 1.415h.908L2.253 13.94zm2.727 3.325H4.557v-3.325h-.79v4h2.487z"/>
+                  </svg>
+               </button>
+            </a>
          </div>
       </div>
    </body>
+   <script th:src="@{/assets/js/navbar.js}"></script>
 </html>
