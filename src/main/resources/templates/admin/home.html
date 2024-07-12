@@ -70,7 +70,7 @@
                   <form th:action="@{/admin/report/analytical}" method="GET">
                      <div class="form-group">
                         <label for="cadastro-produto-nome">Data Inicial</label>
-                        <input type="date" class="form-control border-0 bg-light" id="analitico-data-inicial" name="analitico-data-inicial" placeholder="Digite o nome do produto desejado"/>
+                        <input type="date" value="2020-01-01" class="form-control border-0 bg-light" id="analitico-data-inicial" name="analitico-data-inicial" placeholder="Digite o nome do produto desejado"/>
                      </div>
                      <div class="form-group">
                         <label for="cadastro-produto-nome">Data Final</label>
@@ -101,7 +101,7 @@
                   <form th:action="@{/admin/report/synthetic}" method="GET">
                      <div class="form-group">
                         <label for="cadastro-produto-nome">Data Inicial</label>
-                        <input type="date" class="form-control border-0 bg-light" id="sintetico-data-inicial" name="sintetico-data-inicial" placeholder="Digite o nome do produto desejado"/>
+                        <input type="date" value="2020-01-01" class="form-control border-0 bg-light" id="sintetico-data-inicial" name="sintetico-data-inicial" placeholder="Digite o nome do produto desejado"/>
                      </div>
                      <div class="form-group">
                         <label for="cadastro-produto-nome">Data Final</label>
@@ -119,4 +119,5 @@
          </div>
       </div>
    </body>
+   <script th:src="@{/assets/js/home.js}"></script>
 </html>
