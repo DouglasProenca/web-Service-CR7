@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import com.webServiceCR7Imports.webServiceCR7.Enum.ProductTemplateshttp;
 import com.webServiceCR7Imports.webServiceCR7.dto.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.dto.ProductRequestUpdate;
+import com.webServiceCR7Imports.webServiceCR7.dto.ProductResponsePagination;
 import com.webServiceCR7Imports.webServiceCR7.model.Product;
 import com.webServiceCR7Imports.webServiceCR7.repository.ProdutoRepository;
 
@@ -36,6 +37,12 @@ public class ProductService {
 
 	public List<Product> findAll() {
 		return repository.findAll();
+	}
+	
+	public ProductResponsePagination pagelist(Integer page,Integer limit) {
+		if(limit == null) limit = 10;
+		if(page == null) page = 0;		
+		return repository.pagelist(page, limit);
 	}
 
 	public List<Product> findByName(String name) {
@@ -105,17 +112,17 @@ public class ProductService {
 		return ProductTemplateshttp.edit.getAdress();	
 	}
 	
-	public String getProductsList(Model model, Principal principal) {
+	public String getProductsList(Model model, Principal principal,Integer page,Integer limit) {
 	    model.addAttribute("principal",usuarioService.findByEmail(principal.getName()));
-	    model.addAttribute("productList", findAll());
+	    model.addAttribute("productList", pagelist(page,limit));
 		return ProductTemplateshttp.painel.getAdress();
 	}
 	
-	public String alterStatus(int id, Principal principal) throws Exception {
+	public String alterStatus(int id, Principal principal,Integer page) throws Exception {
 		Product prod = findOne(id);
 		prod.setAtivo(!prod.getAtivo());
 		update(id, prod,principal);
-		return ProductTemplateshttp.redirect.getAdress();
+		return ProductTemplateshttp.redirect.getAdress()+page;
 	}
 	
 }

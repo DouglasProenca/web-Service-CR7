@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.webServiceCR7Imports.webServiceCR7.dto.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.Product;
 import com.webServiceCR7Imports.webServiceCR7.service.ProductService;
@@ -25,9 +27,14 @@ public class ProductController {
 	ProductService productService;
 
 	
-	@GetMapping
-	public String productsList(Model model, Principal principal) {
-	    return productService.getProductsList(model, principal);
+	@GetMapping("/list/{page}")
+	public String productsList(Model model, Principal principal,@PathVariable Integer page,Integer limit) {
+	    return productService.getProductsList(model, principal,page,limit);
+	}
+	
+	@GetMapping("/teste")
+	public String teste(Model model, Principal principal,Integer page,Integer limit) throws JsonMappingException, JsonProcessingException {
+	    return productService.getProductsList(model, principal,page,limit);
 	}
 	
 	@GetMapping("/find")
@@ -50,9 +57,9 @@ public class ProductController {
 		return productService.getFormUpdateProduct(id, principal, model);	
 	}
 	
-	@PostMapping("/{id}/statusproduct")
-	public String statusProduct(@PathVariable int id, Principal principal) throws Exception {
-		return productService.alterStatus(id, principal);	
+	@PostMapping("/{id}/statusproduct/{page}")
+	public String statusProduct(@PathVariable Integer id,@PathVariable Integer page, Principal principal) throws Exception {
+		return productService.alterStatus(id, principal,page);	
 	}
 	
 	@PostMapping("/{id}/editProduct")

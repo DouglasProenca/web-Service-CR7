@@ -31,7 +31,7 @@ public enum ProductTemplateshttp implements httpAdressTemplatInterface {
 
 		@Override
 		public String getAdress() {
-			return "redirect:/admin/product/";
+			return "redirect:/admin/product/list/";
 		}
 	}
 

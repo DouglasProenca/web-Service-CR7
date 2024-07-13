@@ -1,6 +1,8 @@
 package com.webServiceCR7Imports.webServiceCR7.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 	
 	private Integer id;
@@ -9,7 +11,10 @@ public class Product {
 	private Brand brand;
 	private Category category;
 	private double valor;
+	private Usuario user;
 	private boolean ativo;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -65,6 +70,20 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public Usuario getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(Usuario user) {
+		this.user = user;
 	}
 
 	

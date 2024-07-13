@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webServiceCR7Imports.webServiceCR7.dto.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.dto.ProductRequestUpdate;
+import com.webServiceCR7Imports.webServiceCR7.dto.ProductResponsePagination;
 import com.webServiceCR7Imports.webServiceCR7.model.Product;
 
 @FeignClient(name = "product", url = "http://localhost:8088/apicr7imports/private/product")
@@ -23,7 +24,10 @@ public interface ProdutoRepository {
 	@GetMapping
     List<Product> findAll();
 	
-	@GetMapping("/searchproduct?producr")
+	@GetMapping("/pagelist?page=&limit=")
+    ProductResponsePagination pagelist(@RequestParam("page") Integer pagina, @RequestParam("limit") Integer limite);
+	
+	@GetMapping("/searchproduct?product")
 	List<Product> findByName(@RequestParam("product") String name);
 	
 	@PostMapping
