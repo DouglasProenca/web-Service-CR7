@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="PT-BR" xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <!-- HTML -->
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>CR7Imports | E-Mail</title>
+      <link rel="shortcut icon" href="/assets/img/System-computer-icon.png" />
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <!-- CSS -->
+      <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}" />
+      <!-- Boostrap -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   </head>
+   <body>
+      <div th:replace="/admin/navbar"></div>
+      <div class="p-3 mb-2 bg-dark text-black">
+         <div class="d-flex justify-content-center">
+            <div class="card col-sm-12 col-md-10 col-lg-8 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
+               <form th:action="@{/admin/category/newCategory}" method="POST">
+                  <div class="text-typing text-muted">
+                     <p>Enviar E-mail</p>
+                  </div>
+                  <hr class="mb-5">
+                  <div class="form-group">
+                     <label for="cadastro-titulo">Título</label>
+                     <input type="text" class="form-control border-0 bg-light" id="cadastro-titulo" required="true" placeholder="Digite o título desejado"/>
+                  </div>
+				  <div class="form-group">
+				     <label for="cadastro-destinatario">Destinatário</label>
+				     <input type="text" class="form-control border-0 bg-light" id="cadastro-destinatario" required="true" placeholder="Digite o e-mail do destinatário desejado"/>
+				  </div>
+				  <div class="form-group">
+				      <label for="cadastro-mensagem">Mensagem</label>
+				      <textarea type="text" rows="5" cols="33" class="form-control border-0 bg-light" id="cadastro-mensagem" placeholder="Digite a mensagem desejada"></textarea>
+				  </div>
+				  <div class="form-group">
+				  	  <label for="cadastro-anexo">Anexo</label>
+				  	  <input type="file" class="form-control border-0 bg-light" id="cadastro-anexo"/>
+				  </div>
+                  <!-- <input type="hidden" th:field="*{user}" /> -->
+                  <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+					  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+					</svg>
+                  </button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </body>
