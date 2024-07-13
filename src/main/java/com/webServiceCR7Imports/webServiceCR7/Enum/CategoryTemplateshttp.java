@@ -10,14 +10,6 @@ public enum CategoryTemplateshttp implements httpAdressTemplatInterface {
 		}
 
 	},
-
-	edit {
-
-		@Override
-		public String getAdress() {
-			return "category/editar-category";
-		}
-	},
 	
 	registrer {
 

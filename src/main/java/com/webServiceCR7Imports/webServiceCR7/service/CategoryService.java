@@ -79,13 +79,14 @@ public class CategoryService {
 	}
 
 	public String getForm(Category category, Model model) {
+		model.addAttribute("tipo",0);
 		return CategoryTemplateshttp.registrer.getAdress();
 	}
 
 	public String getFormUpdateCategory(int id, Principal principal, Model model) throws Exception {
 		model.addAttribute("category", findOne(id));
 		model.addAttribute("id", id);
-		return CategoryTemplateshttp.edit.getAdress();
+		return CategoryTemplateshttp.registrer.getAdress();
 	}
 
 	public String getCategorysList(Model model, Principal principal) {
