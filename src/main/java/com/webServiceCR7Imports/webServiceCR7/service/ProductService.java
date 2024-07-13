@@ -49,22 +49,22 @@ public class ProductService {
 		return repository.findByName(name);
 	}
 
-	public String save(ProductRequest product, Principal principal) {
+	public String save(ProductRequest product, Principal principal, Integer totalPages) {
 		int idUser = Integer.valueOf(String.valueOf(usuarioService.findByEmail(principal.getName()).getId()));
 		repository.saveProduct(new ProductRequest(product.getNome(), product.getBrand(), product.getValor(), product.getQuantidade(), true, new Date(),idUser, product.getCategory()));	
-		return ProductTemplateshttp.redirect.getAdress();
+		return ProductTemplateshttp.redirect.getAdress()+totalPages;
 	}
 
-	public Product findOne(int id) throws Exception {
+	public Product findOne(Integer id) throws Exception {
 		return repository.findById(id).orElseThrow(() -> new Exception("Produto não localizada"));
 	}
 
-	public String delete(int id) {
+	public String delete(Integer id) {
 		repository.deleteById(id);
 		return ProductTemplateshttp.redirect.getAdress();
 	}
 
-	public String update(int id, Product product,Principal principal) throws Exception {
+	public String update(Integer id,Integer page, Product product,Principal principal) throws Exception {
 		repository.findById(id).orElseThrow(() -> new Exception("Produto não localizado"));
 		
 		Integer idUser = Integer.valueOf(String.valueOf(usuarioService.findByEmail(principal.getName()).getId()));
@@ -82,7 +82,7 @@ public class ProductService {
 		
 		
 		repository.updateProduct(productRequestUpdate);
-		return ProductTemplateshttp.redirect.getAdress();
+		return ProductTemplateshttp.redirect.getAdress()+page;
 	}
 	
 	public ResponseEntity<byte[]> getExcel() {
@@ -98,15 +98,17 @@ public class ProductService {
 		return ProductTemplateshttp.painel.getAdress();
 	}
 	
-	public String getForm(Product product,Model model) {
+	public String getForm(Product product,Model model,Integer totalPages) {
 		model.addAttribute("brands", BrandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
+		model.addAttribute("totalPages", totalPages);
 		return ProductTemplateshttp.registrer.getAdress();
 	}
 	
-	public String getFormUpdateProduct(int id,Principal principal, Model model) throws Exception {
+	public String getFormUpdateProduct(Integer id, Integer page,Principal principal, Model model) throws Exception {
 		model.addAttribute("product", findOne(id));
 		model.addAttribute("id", id);
+		model.addAttribute("page", page);
 		model.addAttribute("brands", BrandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		return ProductTemplateshttp.edit.getAdress();	
@@ -118,11 +120,10 @@ public class ProductService {
 		return ProductTemplateshttp.painel.getAdress();
 	}
 	
-	public String alterStatus(int id, Principal principal,Integer page) throws Exception {
-		Product prod = findOne(id);
-		prod.setAtivo(!prod.getAtivo());
-		update(id, prod,principal);
-		return ProductTemplateshttp.redirect.getAdress()+page;
+	public String alterStatus(Integer id, Principal principal,Integer page) throws Exception {
+		Product product = findOne(id);
+		product.setAtivo(!product.getAtivo());
+		return update(id,page, product,principal);
 	}
 	
 }

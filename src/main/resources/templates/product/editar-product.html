@@ -29,7 +29,7 @@
     <div class="background-gradient-cadastro">
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-                <form th:action="@{ '/admin/product/'+${id}+'/editProduct'}" th:object="${product}" method="POST" >
+                <form th:action="@{ '/admin/product/'+${id}+'/editProduct/'+${page}}" th:object="${product}" method="POST" >
                     <div class="text-typing text-muted">
                         <p>Editar Produto</p> 
                     </div>
