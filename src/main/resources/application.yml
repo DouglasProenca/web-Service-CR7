@@ -26,11 +26,4 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-
-
-## Token valido por 1h  
-security:
-         jwt:
-           token:
-               expire_length: 3600000
-               secret_key: secret    
+  
