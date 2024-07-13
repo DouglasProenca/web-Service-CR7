@@ -22,29 +22,51 @@
       <div class="p-3 mb-2 bg-dark text-black">
          <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-               <form th:action="@{'/admin/product/newProduct/'+${totalPages}}" th:object="${product}" method="POST">
+               <form th:action="@{${tipo == 0} ? '/admin/product/newProduct/'+${totalPages} : '/admin/product/'+${id}+'/editProduct/'+${page}}" th:object="${product}" method="POST">
                   <div class="text-typing text-muted">
-                     <p>Cadastro Produto</p>
+                     <p th:text="${tipo == 0 ? 'Cadastro Produto' : 'Edição Produto'}"></p>
                   </div>
                   <hr class="mb-5">
                   <div class="form-group">
                      <label for="cadastro-produto-nome">Nome do Produto</label>
                      <input type="text" class="form-control border-0 bg-light" id="cadastro-produto-nome" placeholder="Digite o nome do produto desejado" th:field="*{nome}" th:value="*{nome}"/>
                   </div>
-                  <div class="form-group">
+                  <div th:if="${tipo == 0}" class="form-group">
                      <label for="cadastro-produto-brand">Marca</label>
                      <select class="form-control border-0 bg-light" id="cadastro-produto-brand" th:field="*{brand}">
                         <option value="" disabled selected>Select uma marca</option>
                         <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.Marca}"></option>
                      </select>
                   </div>
-                  <div class="form-group">
+				  <div th:if="${tipo != 0}" class="form-group">
+				  					   <label for="cadastro-produto-country">Marca</label>
+				  					   <select class="form-control border-0 bg-light" th:field="*{brand.id}"  name="brand" id="brand"/>
+				  					      <option value="" disabled selected>Select uma marca</option>
+				  					      <option th:each="brand : ${brands}" 
+				  					         th:selected="${brand.id == product.brand.id}"
+				  					         th:value="${brand.id}" 
+				  					         th:text="${brand.Marca}" >
+				  					      </option>
+				  					   </select>
+				  					</div>	
+                  <div th:if="${tipo == 0}" class="form-group">
                      <label for="cadastro-produto-category">Categoria</label>
                      <select class="form-control border-0 bg-light" id="cadastro-produto-category" th:field="*{category}">
                         <option value="" disabled selected>Select uma categoria</option>
                         <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoria}"></option>
                      </select>
                   </div>
+				  <div th:if="${tipo != 0}" class="form-group">
+				  					   <label for="cadastro-produto-country">Categoria</label>
+				  					   <select class="form-control border-0 bg-light" th:field="*{category.id}"  name="category" id="category"/>
+				  						  <option value="" disabled selected>Select uma categoria</option>
+				  						  <option th:each="category : ${categories}" 
+				  								  th:selected="${category.id == product.category.id}"
+				  								  th:value="${category.id}" 
+				  								  th:text="${category.categoria}" >
+				  						  </option>
+				  					   </select>
+				  					</div>	
                   <div class="form-group">
                      <label for="cadastro-produto-valor">Valor</label>
                      <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-valor" placeholder="Valor do produto" th:field="*{valor}" th:value="*{valor}" />

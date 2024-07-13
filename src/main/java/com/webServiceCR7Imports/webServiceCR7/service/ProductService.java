@@ -102,6 +102,7 @@ public class ProductService {
 		model.addAttribute("brands", BrandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("tipo",0);
 		return ProductTemplateshttp.registrer.getAdress();
 	}
 	
@@ -111,7 +112,7 @@ public class ProductService {
 		model.addAttribute("page", page);
 		model.addAttribute("brands", BrandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		return ProductTemplateshttp.edit.getAdress();	
+		return ProductTemplateshttp.registrer.getAdress();	
 	}
 	
 	public String getProductsList(Model model, Principal principal,Integer page,Integer limit) {

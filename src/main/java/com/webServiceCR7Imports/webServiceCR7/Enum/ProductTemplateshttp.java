@@ -10,14 +10,6 @@ public enum ProductTemplateshttp implements httpAdressTemplatInterface {
 		}
 
 	},
-
-	edit {
-
-		@Override
-		public String getAdress() {
-			return "product/editar-product";
-		}
-	},
 	
 	registrer {
 
