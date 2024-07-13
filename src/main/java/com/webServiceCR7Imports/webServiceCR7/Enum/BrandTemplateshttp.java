@@ -10,14 +10,6 @@ public enum BrandTemplateshttp implements httpAdressTemplatInterface {
 		}
 
 	},
-
-	edit {
-
-		@Override
-		public String getAdress() {
-			return "brand/editar-brand";
-		}
-	},
 	
 	registrer {
 

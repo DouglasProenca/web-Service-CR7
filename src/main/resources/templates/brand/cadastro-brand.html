@@ -29,23 +29,34 @@
     <div class="p-3 mb-2 bg-dark text-black">
         <div class="d-flex justify-content-center">
             <div class="card col-sm-10 col-md-10 col-lg-5 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-                <form th:action="@{/admin/brand/newBrand}" th:object="${brand}" method="POST">
+                <form th:action="@{${tipo == 0} ? '/admin/brand/newBrand' : '/admin/brand/'+${id}+'/editBrand'}" th:object="${brand}" method="POST">
                     <div class="text-typing text-muted">
-                        <p>Cadastro Marca</p> 
+                        <p th:text="${tipo == 0 ? 'Cadastro Marca' : 'Edição Marca'}"></p> 
                     </div>
                     <hr class="mb-5">
                     <div class="form-group">
                         <label for="cadastro-marca-nome">Nome da Marca</label>
                         <input type="text" class="form-control border-0 bg-light" id="cadastro-marca-nome" placeholder="Digite o nome da marca desejada" required=true th:field="*{marca}" th:value="*{marca}"/>
                     </div>
-					<div class="form-group">
+					<div th:if="${tipo == 0}"  class="form-group">
 					     <label for="cadastro-marca-country">País</label>
 					<select class="form-control border-0 bg-light" id="cadastro-marca-country" th:field="*{country}">
 					      <option value="" disabled selected>Select um Pais</option>
 					      <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.namePort}"></option>
 					</select>
 					</div>
-					<div class="form-group">
+					<div th:if="${tipo != 0}" class="form-group">
+					                     <label for="country">Pais</label>
+					                     <select class="form-control border-0 bg-light" th:field="*{country.id}"  name="country" id="country"/>
+					                        <option value="" disabled selected>Select um Pais</option>
+					                        <option th:each="country : ${countries}" 
+					                           th:selected="${country.id == brand.country.id}"
+					                           th:value="${country.id}" 
+					                           th:text="${country.namePort}" >
+					                        </option>
+					                     </select>
+					                  </div>
+					<div th:if="${tipo == 0}" class="form-group">
 					    <input type="hidden" th:field="*{user}" />
 					</div>
                     <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">

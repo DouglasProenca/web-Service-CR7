@@ -85,6 +85,7 @@ public class BrandService {
 	
 	public String getForm(Brand brand,Model model) {
 		model.addAttribute("countries", countryService.findAll());
+		model.addAttribute("tipo",0);
 		return BrandTemplateshttp.registrer.getAdress();
 	}
 	
@@ -92,7 +93,7 @@ public class BrandService {
 		model.addAttribute("brand", findOne(id));
 		model.addAttribute("id", id);
 		model.addAttribute("countries", countryService.findAll());
-		return BrandTemplateshttp.edit.getAdress();	
+		return BrandTemplateshttp.registrer.getAdress();	
 	}
 	
 	public String getBrandsList(Model model, Principal principal) {
