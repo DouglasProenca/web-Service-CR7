@@ -39,8 +39,8 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/newCategory")
-	public String newCategory(CategoryRequest category, Principal principal) {
-		return categoryService.save(category,principal);
+	public String newCategory(CategoryRequest category) {
+		return categoryService.save(category);
 	}
 	
 	@GetMapping("/{id}")
@@ -49,8 +49,8 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/{id}/editCategory")
-	public String editBrand(@PathVariable int id, Principal principal, Category category) throws Exception {
-		return categoryService.update(id, category, principal);
+	public String editBrand(@PathVariable int id, Category category) throws Exception {
+		return categoryService.update(id, category);
 	}
 	
 	@GetMapping("/{id}/delete")

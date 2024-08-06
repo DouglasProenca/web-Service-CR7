@@ -1,18 +1,14 @@
 package com.webServiceCR7Imports.webServiceCR7.dto;
 
-import java.util.Date;
-
 public class CategoryRequest {
 
-    private String categoria;
-    private Date data;
-    private Integer user;
+    String categoria;
+    String data;
     
-	public CategoryRequest(String categoria, Date data, Integer user) {
+	public CategoryRequest(String categoria, String data) {
 		super();
 		this.categoria = categoria;
 		this.data = data;
-		this.user = user;
 	}
 
 	public String getCategoria() {
@@ -24,20 +20,12 @@ public class CategoryRequest {
 	}
 
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
-	}
-
-	public int getUser() {
-		return user;
-	}
-
-	public void setUser(Integer user) {
-		this.user = user;
 	}
 	
 }

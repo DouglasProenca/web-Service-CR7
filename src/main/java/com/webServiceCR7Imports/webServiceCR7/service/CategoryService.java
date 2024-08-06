@@ -1,7 +1,8 @@
 package com.webServiceCR7Imports.webServiceCR7.service;
 
 import java.security.Principal;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,8 @@ public class CategoryService {
 		return repository.findByName(name);
 	}
 
-	public String save(CategoryRequest category, Principal principal) {
-		int idUser = Integer.valueOf(String.valueOf(usuarioService.findByEmail(principal.getName()).getId()));
-		repository.saveCategory(new CategoryRequest(category.getCategoria(), new Date(), idUser));
+	public String save(CategoryRequest category) {
+		repository.saveCategory(new CategoryRequest(category.getCategoria(), LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
 		return CategoryTemplateshttp.redirect.getAdress();
 	}
 
@@ -50,16 +50,13 @@ public class CategoryService {
 		return CategoryTemplateshttp.redirect.getAdress();
 	}
 
-	public String update(int id, Category category, Principal principal) throws Exception {
+	public String update(int id, Category category) throws Exception {
 		repository.findById(id).orElseThrow(() -> new Exception("Categoria não localizada"));
-
-		Integer idUser = Integer.valueOf(String.valueOf(usuarioService.findByEmail(principal.getName()).getId()));
 
 		CategoryRequestUpdate brandRequestUpdate = new CategoryRequestUpdate();
 		brandRequestUpdate.setId(id);
 		brandRequestUpdate.setCategoria(category.getCategoria());
-		brandRequestUpdate.setData(new Date());
-		brandRequestUpdate.setUser(idUser);
+		brandRequestUpdate.setData(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
 		repository.updateCategory(brandRequestUpdate);
 		return CategoryTemplateshttp.redirect.getAdress();
