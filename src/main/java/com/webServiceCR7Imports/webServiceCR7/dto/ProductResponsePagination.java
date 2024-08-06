@@ -16,6 +16,19 @@ public class ProductResponsePagination {
 	private Integer totalPages;
 	private boolean first;
 	private boolean empty;
+	
+
+	public ProductResponsePagination(List<Product> content, Integer number, Integer pageSize, boolean last,
+			Integer totalPages, boolean first, boolean empty) {
+		super();
+		this.content = content;
+		this.number = number;
+		this.pageSize = pageSize;
+		this.last = last;
+		this.totalPages = totalPages;
+		this.first = first;
+		this.empty = empty;
+	}
 
 	/**
 	 * @return the content

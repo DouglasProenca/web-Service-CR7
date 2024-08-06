@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.webServiceCR7Imports.webServiceCR7.Enum.ProductTemplateshttp;
 import com.webServiceCR7Imports.webServiceCR7.dto.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.Product;
 import com.webServiceCR7Imports.webServiceCR7.service.ProductService;
@@ -26,14 +27,14 @@ public class ProductController {
 
 	
 	@GetMapping("/list/{page}")
-	public String productsList(Model model, Principal principal,@PathVariable Integer page,Integer limit) {
-	    return productService.getProductsList(model, principal,page,limit);
+	public String productsList(Model model, Principal principal,@PathVariable Integer page) {
+	    return productService.getProductsList(model, principal,page);
 	}
 	
 	
-	@GetMapping("/find")
-	public String searchBrands(@RequestParam("product") String productName,Model model, Principal principal) throws Exception {
-	    return productService.getSearchProducts(productName, model, principal);
+	@GetMapping("/find/{page}")
+	public String searchProducts(@RequestParam("product") String productName,Model model, Principal principal,@PathVariable Integer page) throws Exception {
+	    return productService.getSearchProducts(productName, model, principal,page);
 	}
 	
 	@GetMapping("/form/{totalPages}")
@@ -53,22 +54,25 @@ public class ProductController {
 	
 	@PostMapping("/{id}/statusproduct/{page}")
 	public String statusProduct(@PathVariable Integer id,@PathVariable Integer page, Principal principal) throws Exception {
-		return productService.alterStatus(id, principal,page);	
+		productService.alterStatus(id, principal);
+		return ProductTemplateshttp.redirect.getAdress()+ page;
 	}
 	
 	@PostMapping("/{id}/editProduct/{page}")
-	public String editBrand(@PathVariable Integer id,@PathVariable Integer page, Principal principal, Product product) throws Exception {
-		return productService.update(id, page, product, principal);
+	public String editProduct(@PathVariable Integer id,@RequestParam("product") String productName,@PathVariable Integer page, Principal principal, Product product) throws Exception {
+		productService.update(id, product, principal);
+		return ProductTemplateshttp.redirect.getAdress()+ page;
 	}
 	
 	@GetMapping("/{id}/delete")
 	public String deleteBrand(@PathVariable int id, Principal principal) {
-		return productService.delete(id);	
+		productService.delete(id);	
+		return ProductTemplateshttp.redirect.getAdress();
 	}
 	
 	@GetMapping("/excel")
-	public ResponseEntity<byte[]>getExcel() {
-	    return productService.getExcel();
+	public ResponseEntity<byte[]> getExcel() {
+	   return productService.getExcel();
 	}
 	
 }

@@ -1,7 +1,5 @@
 package com.webServiceCR7Imports.webServiceCR7.repository;
 
-
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -20,28 +18,25 @@ import com.webServiceCR7Imports.webServiceCR7.model.Product;
 
 @FeignClient(name = "product", url = "http://localhost:8088/apicr7imports/private/product")
 public interface ProdutoRepository {
-
-	@GetMapping
-    List<Product> findAll();
 	
-	@GetMapping("/pagelist?page=&limit=")
-    ProductResponsePagination pagelist(@RequestParam("page") Integer pagina, @RequestParam("limit") Integer limite);
+	@GetMapping("/pagelist?page=")
+    ProductResponsePagination pagelist(@RequestParam("page") Integer pagina);
 	
-	@GetMapping("/searchproduct?product")
-	List<Product> findByName(@RequestParam("product") String name);
+	@GetMapping("/pagelist/searchproduct?product=&page=&limit=")
+	ProductResponsePagination findByNamePage(@RequestParam("product") String name,@RequestParam("page") Integer pagina);
 	
 	@PostMapping
-	ProductRequest saveProduct(@RequestBody ProductRequest productRequest);
+	void save(@RequestBody ProductRequest productRequest);
 	
 	@GetMapping("/{id}")
-	Optional<Product> findById(@PathVariable("id") int id);
+	Optional<Product> findById(@PathVariable("id") Integer id);
 	
 	@GetMapping("/excel")
 	byte[] getExcel();
 	
 	@DeleteMapping("/{id}")
-	void deleteById(@PathVariable("id") int id);
+	void deleteById(@PathVariable("id") Integer id);
 	
 	@PutMapping
-	ProductRequestUpdate updateProduct(ProductRequestUpdate productRequestUpdate);
+	void update(ProductRequestUpdate productRequestUpdate);
 }

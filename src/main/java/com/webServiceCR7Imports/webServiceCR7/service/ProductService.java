@@ -2,7 +2,6 @@ package com.webServiceCR7Imports.webServiceCR7.service;
 
 import java.security.Principal;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -35,23 +34,19 @@ public class ProductService {
 	@Autowired
 	CategoryService categoryService;
 
-	public List<Product> findAll() {
-		return repository.findAll();
+	public ProductResponsePagination pagelist(Integer page) {
+		if(page == null) page = 0;		
+		return repository.pagelist(page);
 	}
 	
-	public ProductResponsePagination pagelist(Integer page,Integer limit) {
-		if(limit == null) limit = 10;
+	public ProductResponsePagination pagelistByName(String name,Integer page) {
 		if(page == null) page = 0;		
-		return repository.pagelist(page, limit);
-	}
-
-	public List<Product> findByName(String name) {
-		return repository.findByName(name);
+		return repository.findByNamePage(name,page);
 	}
 
 	public String save(ProductRequest product, Principal principal, Integer totalPages) {
 		int idUser = Integer.valueOf(String.valueOf(usuarioService.findByEmail(principal.getName()).getId()));
-		repository.saveProduct(new ProductRequest(product.getNome(), product.getBrand(), product.getValor(), product.getQuantidade(), true, new Date(),idUser, product.getCategory()));	
+		repository.save(new ProductRequest(product.getNome(), product.getBrand(), product.getValor(), product.getQuantidade(), true, new Date(),idUser, product.getCategory()));	
 		return ProductTemplateshttp.redirect.getAdress()+totalPages;
 	}
 
@@ -59,12 +54,11 @@ public class ProductService {
 		return repository.findById(id).orElseThrow(() -> new Exception("Produto não localizada"));
 	}
 
-	public String delete(Integer id) {
+	public void delete(Integer id) {
 		repository.deleteById(id);
-		return ProductTemplateshttp.redirect.getAdress();
 	}
 
-	public String update(Integer id,Integer page, Product product,Principal principal) throws Exception {
+	public void update(Integer id, Product product,Principal principal) throws Exception {
 		repository.findById(id).orElseThrow(() -> new Exception("Produto não localizado"));
 		
 		Integer idUser = Integer.valueOf(String.valueOf(usuarioService.findByEmail(principal.getName()).getId()));
@@ -80,9 +74,7 @@ public class ProductService {
 		productRequestUpdate.setUser(idUser);
 		productRequestUpdate.setCategory(product.getCategory().getId());
 		
-		
-		repository.updateProduct(productRequestUpdate);
-		return ProductTemplateshttp.redirect.getAdress()+page;
+		repository.update(productRequestUpdate);
 	}
 	
 	public ResponseEntity<byte[]> getExcel() {
@@ -92,9 +84,11 @@ public class ProductService {
 		return new ResponseEntity<>(repository.getExcel(), headers, HttpStatus.OK);
 	}
 	
-	public String getSearchProducts(String nomeMarca,Model model, Principal principal) throws Exception {
+	public String getSearchProducts(String name,Model model, Principal principal,Integer page) throws Exception {
 	    model.addAttribute("principal",usuarioService.findByEmail(principal.getName()));
-	    model.addAttribute("productList", findByName(nomeMarca));
+	    model.addAttribute("productList", pagelistByName(name,page));
+	    model.addAttribute("tipo", 1);
+	    model.addAttribute("pesquisa",name);
 		return ProductTemplateshttp.painel.getAdress();
 	}
 	
@@ -115,16 +109,17 @@ public class ProductService {
 		return ProductTemplateshttp.registrer.getAdress();	
 	}
 	
-	public String getProductsList(Model model, Principal principal,Integer page,Integer limit) {
+	public String getProductsList(Model model, Principal principal,Integer page) {
 	    model.addAttribute("principal",usuarioService.findByEmail(principal.getName()));
-	    model.addAttribute("productList", pagelist(page,limit));
+	    model.addAttribute("productList", pagelist(page));
+	    model.addAttribute("tipo", 0);
 		return ProductTemplateshttp.painel.getAdress();
 	}
 	
-	public String alterStatus(Integer id, Principal principal,Integer page) throws Exception {
+	public void alterStatus(Integer id, Principal principal) throws Exception {
 		Product product = findOne(id);
 		product.setAtivo(!product.getAtivo());
-		return update(id,page, product,principal);
+		update(id, product,principal);
 	}
 	
 }

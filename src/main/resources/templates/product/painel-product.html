@@ -26,7 +26,7 @@
                <p>Lista de Produtos</p>
             </div>
             <hr class="mb-5">
-            <form th:action="@{/admin/product/find}" class="form-group" th:object="${principal}">
+            <form th:action="@{/admin/product/find/0}" class="form-group" th:object="${principal}">
                <div class="row">
                   <input type="text" class="form-control border-0 bg-light col-9 mr-2 mb-2 mb-md-0" id="cadastro-usuario" name="product" placeholder="Digite o nome do produto desejado">
                   <button type="submit"  class="btn btn-primary col-12 col-md-2">
@@ -68,19 +68,19 @@
                </table>
                <nav aria-label="Navegação de página">
                   <ul class="pagination">
-                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Anterior" th:href="@{((${productList.number} - 1) <  0 ? ${productList.number} : (${productList.number} - 1))}">
+                     <li class="page-item" th:classappend="${productList.number} == 0 ? 'disabled'">
+                        <a class="page-link" aria-label="Anterior" th:href="@{((${productList.number} - 1) + (${tipo} == 0 ? '' : '?product='+${pesquisa}))}">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Anterior</span>
                         </a>
                      </li>
-                     <li th:each="pageNumber : ${#numbers.sequence(0, productList.totalPages)}"  th:classappend="${pageNumber == productList.number} ? 'page-item active' : 'page-item'">
-                        <a class="page-link" th:href="@{'/admin/product/list/' + ${pageNumber}}">
-                        <span th:text="${pageNumber}"></span>
+                     <li th:each="pageNumber : ${#numbers.sequence(0, (productList.totalPages)-1)}"  th:classappend="${pageNumber == productList.number} ? 'page-item active' : 'page-item'">
+                        <a class="page-link" th:href="@{(${tipo} == 0 ? '/admin/product/list/'+ ${pageNumber} : '/admin/product/find/'+ ${pageNumber}+'?product='+${pesquisa})}">
+                        <span th:text="${pageNumber}+1"></span>
                         </a>
                      </li>
-                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Próximo" th:href="@{((${productList.number} + 1) >  ${productList.totalPages} ? ${productList.number} : (${productList.number} + 1))}">
+                     <li class="page-item" th:classappend="${productList.number} == (${productList.totalPages}-1) ? 'disabled'">
+                        <a class="page-link" aria-label="Próximo" th:href="@{((${productList.number} + 1) + (${tipo} == 0 ? '' : '?product='+${pesquisa}))}">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Próximo</span>
                         </a>

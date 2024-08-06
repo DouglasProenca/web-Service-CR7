@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ProductRequestUpdate {
 	
-	private int id;
+	private Integer id;
 	private String nome;
 	private Integer brand;
 	private double valor;
@@ -34,7 +34,7 @@ public class ProductRequestUpdate {
 	 * @param user
 	 * @param category
 	 */
-	public ProductRequestUpdate(int id, String nome, Integer brand, double valor, Integer quantidade, boolean ativo,
+	public ProductRequestUpdate(Integer id, String nome, Integer brand, double valor, Integer quantidade, boolean ativo,
 			Date data, Integer user, Integer category) {
 		super();
 		this.id = id;
@@ -56,7 +56,7 @@ public class ProductRequestUpdate {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	/**
