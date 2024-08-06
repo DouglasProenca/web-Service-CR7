@@ -15,43 +15,47 @@ import com.webServiceCR7Imports.webServiceCR7.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
 
-	@Autowired
-	private UsuarioRepository usuarioRepo;
+	//@Autowired
+	//private UsuarioRepository usuarioRepo;
 	
 	public Usuario salvar(Usuario usuario) {
 	
-		Usuario usuarioExistente = usuarioRepo.findByUsername(usuario.getUserName());
+		Usuario usuarioExistente = new Usuario();//usuarioRepo.findByUsername(usuario.getUserName());
 		
 		if(usuarioExistente != null && usuarioExistente.equals(usuario)) {
 			throw new RegraNegocioException("Já existe um usuario cadastrado com este e-mail.");
 		}
 			
-		return usuarioRepo.save(usuario);
+		//return usuarioRepo.save(usuario);
+		return null;
 	}
 	
 	public Usuario findByEmail(String email) {
-		return usuarioRepo.findByUsername(email);
+		//return usuarioRepo.findByUsername(email);
+		return new Usuario();
 	}
 	
 	public List<Usuario> findAll() {
-		return usuarioRepo.findAll();
+		//return usuarioRepo.findAll();
+		return null;
 	}
 	
 	public Usuario findOne(int idUsuario) {
-		return usuarioRepo.findById(idUsuario)
-				.orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+		//return usuarioRepo.findById(idUsuario)
+		//		.orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+		return null;
 	}	
 		
 	
 	public void delete(int id) {
-		this.usuarioRepo.deleteById(id);
+		//this.usuarioRepo.deleteById(id);
 	}
 
 	// deletar VARAIOS
 	public void deleteMany(int[] ids) {
-		for (int i : ids) {
-			this.usuarioRepo.deleteById(i);
-		}		
+		//for (int i : ids) {
+		//	this.usuarioRepo.deleteById(i);
+		//}		
 	}
 	
 	
