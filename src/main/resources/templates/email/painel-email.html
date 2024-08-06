@@ -22,28 +22,28 @@
       <div class="p-3 mb-2 bg-dark text-black">
          <div class="d-flex justify-content-center">
             <div class="card col-sm-12 col-md-10 col-lg-8 p-5 border-0 mt-5 mb-5 shadow" id="slidein">
-               <form th:action="@{/admin/category/newCategory}" method="POST">
+               <form th:action="@{/admin/email}" method="POST" th:object="${mailRequest}">
                   <div class="text-typing text-muted">
                      <p>Enviar E-mail</p>
                   </div>
                   <hr class="mb-5">
                   <div class="form-group">
                      <label for="cadastro-titulo">Título</label>
-                     <input type="text" class="form-control border-0 bg-light" id="cadastro-titulo" required="true" placeholder="Digite o título desejado"/>
+                     <input type="text" class="form-control border-0 bg-light" id="cadastro-titulo" required="true" placeholder="Digite o título desejado" th:field="*{assunto}" />
                   </div>
 				  <div class="form-group">
 				     <label for="cadastro-destinatario">Destinatário</label>
-				     <input type="text" class="form-control border-0 bg-light" id="cadastro-destinatario" required="true" placeholder="Digite o e-mail do destinatário desejado"/>
+				     <input type="text" class="form-control border-0 bg-light" id="cadastro-destinatario" required="true" placeholder="Digite o e-mail do destinatário desejado" th:field="*{destinatario}"/>
 				  </div>
 				  <div class="form-group">
 				      <label for="cadastro-mensagem">Mensagem</label>
-				      <textarea type="text" rows="5" cols="33" class="form-control border-0 bg-light" id="cadastro-mensagem" placeholder="Digite a mensagem desejada"></textarea>
+				      <textarea type="text" rows="5" cols="33" class="form-control border-0 bg-light" id="cadastro-mensagem" placeholder="Digite a mensagem desejada" th:field="*{texto}"></textarea>
 				  </div>
 				  <div class="form-group">
 				  	  <label for="cadastro-anexo">Anexo</label>
 				  	  <input type="file" class="form-control border-0 bg-light" id="cadastro-anexo"/>
 				  </div>
-                  <!-- <input type="hidden" th:field="*{user}" /> -->
+                  <input type="hidden" th:field="*{user}" /> 
                   <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
 					  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
