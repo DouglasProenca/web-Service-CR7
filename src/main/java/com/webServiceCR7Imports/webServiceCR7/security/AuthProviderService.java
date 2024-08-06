@@ -1,13 +1,11 @@
 package com.webServiceCR7Imports.webServiceCR7.security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.webServiceCR7Imports.webServiceCR7.config.FeignConfig;
@@ -17,43 +15,35 @@ import com.webServiceCR7Imports.webServiceCR7.repository.AcessRepository;
 
 import feign.FeignException;
 
-
-
 @Component
 public class AuthProviderService implements AuthenticationProvider {
-    
-    @Autowired
-    private AcessRepository acessRepository;
-    
-    @Autowired
-    private FeignConfig feignConfig;
 
-    @Override
-    public Authentication authenticate(Authentication auth) throws AuthenticationException {
-        String login = auth.getName();
-        String senha = auth.getCredentials().toString();
+	@Autowired
+	private AcessRepository acessRepository;
 
+	@Autowired
+	private FeignConfig feignConfig;
 
-        Acess acess = new Acess();
+	@Override
+	public Authentication authenticate(Authentication auth) throws AuthenticationException {
+		try {
+		Acess acess = acessRepository.login(new AcessRequest(auth.getName(), auth.getCredentials().toString()));
+
+		feignConfig.setToken(acess.getToken());
+		
+        return new TokenAuthentication(acess.getToken(), true, acess.getUsername());
         
-        try {
-        	acess = acessRepository.login(new AcessRequest(login, senha));
-        } catch (FeignException e) {
-            if (e.status() == 403) {
-            	throw new BadCredentialsException(e.getMessage());
-            }
-        }
-
-		if (acess != null) {
-			feignConfig.setToken(acess.getToken());
-			return new TokenAuthentication(acess.getToken(), true, login);
+		} catch (FeignException e) {
+			if (e.status() == 403) {
+				throw new BadCredentialsException(e.getMessage());	
+			}
 		}
-		throw new UsernameNotFoundException("Login e/ou Senha inválidos.");
+		return null;
 	}
 
-    @Override
-    public boolean supports(Class<?> auth) {
-        return auth.equals(UsernamePasswordAuthenticationToken.class);
-    }
+	@Override
+	public boolean supports(Class<?> auth) {
+		return auth.equals(UsernamePasswordAuthenticationToken.class);
+	}
 
 }
