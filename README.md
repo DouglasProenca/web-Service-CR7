@@ -30,4 +30,4 @@ Projeto em desenolvimento para simular um front do Webcr7Imports puxando dados d
 - ``JavaScript``
 
 ## 📁 Acesso ao projeto da API CR7Imports
-Acesse clicando [aqui](DouglasProenca_ProjetoIntegradorIIApiRest).
+Acesse clicando [aqui](https://github.com/DouglasProenca/ProjetoIntegradorIIApiRest).
