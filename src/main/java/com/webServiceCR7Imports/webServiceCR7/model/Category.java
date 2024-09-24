@@ -2,56 +2,19 @@ package com.webServiceCR7Imports.webServiceCR7.model;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class Category {
 	
-	private Integer id;
-	private String categoria;
-	private Date data;
-	private Usuario user;
+	Integer categoryId;
+	String categoryName;
+	Date date;
+	Usuario user;
 	
-	public Category() {
-		
-	}
-
-	
-	
-	public Category(Integer id) {
-		super();
-		this.id = id;
-	}
-
-
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public Usuario getUser() {
-		return user;
-	}
-
-	public void setUser(Usuario user) {
-		this.user = user;
-	}
 
 }

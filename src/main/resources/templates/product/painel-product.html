@@ -50,18 +50,18 @@
                   </thead>
                   <tbody>
                      <tr th:each="produto: ${productList.content}">
-                        <td th:text="${produto.id}" />
-                        <td th:text="${produto.nome}" />
-                        <td th:text="${#numbers.formatDecimal(produto.valor, 0, 'COMMA', 2, 'POINT')}" />
-                        <td th:text="${produto.quantidade}" />
-                           <form th:action="@{'/admin/product/'+${produto.id}+'/statusproduct/'+ ${productList.number}}" method="POST" th:object="${principal}">
+                        <td th:text="${produto.productId}" />
+                        <td th:text="${produto.productName}" />
+                        <td th:text="${#numbers.formatDecimal(produto.price, 0, 'COMMA', 2, 'POINT')}" />
+                        <td th:text="${produto.amount}" />
+                           <form th:action="@{'/admin/product/'+${produto.productId}+'/statusproduct/'+ ${productList.number}}" method="POST" th:object="${principal}">
                         <td >
-                        <button th:if="${produto.ativo}" type="submit" class="btn btn-outline-danger">Inativar</button>
-                        <button th:unless="${produto.ativo}" type="submit" class="btn btn-outline-success">Ativar</button>
+                        <button th:if="${produto.enabled}" type="submit" class="btn btn-outline-danger">Inativar</button>
+                        <button th:unless="${produto.enabled}" type="submit" class="btn btn-outline-success">Ativar</button>
                         </td>  
                         </form>
                         <td >
-                           <a aria-current="page" th:href="@{'/admin/product/'+${produto.id} + '/' + ${productList.number}}"><button type="" class="btn btn-outline-primary">Editar</button></a>
+                           <a aria-current="page" th:href="@{'/admin/product/'+${produto.productId} + '/' + ${productList.number}}"><button type="" class="btn btn-outline-primary">Editar</button></a>
                         </td>
                      </tr>
                   </tbody>

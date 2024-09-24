@@ -1,4 +1,4 @@
-package com.webServiceCR7Imports.webServiceCR7.dto;
+package com.webServiceCR7Imports.webServiceCR7.model.dto;
 
 public class UsuarioInput {
 

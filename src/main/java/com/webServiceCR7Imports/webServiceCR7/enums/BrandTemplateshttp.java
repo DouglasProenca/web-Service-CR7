@@ -1,4 +1,4 @@
-package com.webServiceCR7Imports.webServiceCR7.Enum;
+package com.webServiceCR7Imports.webServiceCR7.enums;
 
 public enum BrandTemplateshttp implements httpAdressTemplatInterface {
 

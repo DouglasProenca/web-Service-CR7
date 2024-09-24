@@ -28,6 +28,7 @@ Projeto em desenolvimento para simular um front do Webcr7Imports puxando dados d
 - ``HTML``
 - ``CSS``
 - ``JavaScript``
+- ``Bootstrap``
 
 ## 📁 Acesso ao projeto da API CR7Imports
 Acesse clicando [aqui](https://github.com/DouglasProenca/ProjetoIntegradorIIApiRest).

@@ -1,39 +1,20 @@
 package com.webServiceCR7Imports.webServiceCR7.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
-
-import com.webServiceCR7Imports.webServiceCR7.repository.ReportsRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
-public class ReportService {
+@FeignClient(name = "reports", url = "http://localhost:8088/apicr7imports/private/jasper")
+public interface ReportService {
 	
-	@Autowired
-	ReportsRepository repository;
-
+	@GetMapping("/analyticalReport?dateini&datefin")
+	byte[] getAnalyticalReport(@RequestParam("dateini") String dataIni,@RequestParam("datefin") String dataFin);
 	
-	public ResponseEntity<byte[]> getAnalyticalReport(String dataIni,String dataFin) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		headers.setContentDispositionFormData("attachment", "analitico.pdf");
-		return new ResponseEntity<>(repository.getAnalyticalReport(dataIni,dataFin), headers, HttpStatus.OK);
-	}
+	@GetMapping("/syntheticReport?dateini&datefin")
+	byte[] getSyntheticReport(@RequestParam("dateini") String dataIni,@RequestParam("datefin") String dataFin);
 	
-	public ResponseEntity<byte[]> getSyntheticReport(String dataIni,String dataFin) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		headers.setContentDispositionFormData("attachment", "sintetico.pdf");
-		return new ResponseEntity<>(repository.getSyntheticReport(dataIni,dataFin), headers, HttpStatus.OK);
-	}
-	
-	public ResponseEntity<byte[]> getManagentmentReport() {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-		headers.setContentDispositionFormData("attachment", "gerencial.pdf");
-		return new ResponseEntity<>(repository.getManagentmentReport(), headers, HttpStatus.OK);
-	}
+	@GetMapping("/managentmentReport")
+	byte[] getManagentmentReport();
 }

@@ -9,9 +9,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import com.webServiceCR7Imports.webServiceCR7.config.FeignConfig;
-import com.webServiceCR7Imports.webServiceCR7.dto.AcessRequest;
+import com.webServiceCR7Imports.webServiceCR7.model.dto.AcessRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.Acess;
-import com.webServiceCR7Imports.webServiceCR7.repository.AcessRepository;
+import com.webServiceCR7Imports.webServiceCR7.service.AcessService;
 
 import feign.FeignException;
 
@@ -19,7 +19,7 @@ import feign.FeignException;
 public class AuthProviderService implements AuthenticationProvider {
 
 	@Autowired
-	private AcessRepository acessRepository;
+	private AcessService acessService;
 
 	@Autowired
 	private FeignConfig feignConfig;
@@ -27,7 +27,7 @@ public class AuthProviderService implements AuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		try {
-		Acess acess = acessRepository.login(new AcessRequest(auth.getName(), auth.getCredentials().toString()));
+		Acess acess = acessService.login(new AcessRequest(auth.getName(), auth.getCredentials().toString()));
 
 		feignConfig.setToken(acess.getToken());
 		

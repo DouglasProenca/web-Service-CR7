@@ -1,20 +1,8 @@
 spring:
-  datasource:
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;databaseName=Cr7Imports;encrypt=true;trustServerCertificate=true
-    username: sa
-    password: Banana!90
-    
-  jpa:
-    defer-datasource-initialization: false
-    properties:
-      hibernate: 
-      ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        dialect: org.hibernate.dialect.SQLServerDialect.
-        show-sql: false
-        
+  
+  thymeleaf:
+       prefix: classpath:/templates/  
+
   servlet:
     multipart:
       enabled: true

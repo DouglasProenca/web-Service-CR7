@@ -51,16 +51,16 @@
                   </thead>
                   <tbody>
                      <tr th:each="brand: ${brandList}">
-                        <td th:text="${brand.id}" />
-                        <td th:text="${brand.marca}" />
+                        <td th:text="${brand.brandId}" />
+                        <td th:text="${brand.brandName}" />
                         <td th:text="${brand.country.namePort}" />
                         <td th:text="${brand.user.userName}" />
-                        <td th:text="${#dates.format(brand.data, 'dd/MM/yyyy')}" />
+                        <td th:text="${#dates.format(brand.date, 'dd/MM/yyyy')}" />
                         <td >
-                           <a aria-current="page" th:href="@{'/admin/brand/'+${brand.id}}"><button type="" class="btn btn-outline-primary">Editar</button></a>
+                           <a aria-current="page" th:href="@{'/admin/brand/'+${brand.brandId}}"><button type="" class="btn btn-outline-primary">Editar</button></a>
                         </td>
                         <td >
-                           <a aria-current="page" th:href="@{'/admin/brand/'+${brand.id}+'/delete'}"><button type="" class="btn btn-outline-danger">Deletar</button></a>
+                           <a aria-current="page" th:href="@{'/admin/brand/'+${brand.brandId}+'/delete'}"><button type="" class="btn btn-outline-danger">Deletar</button></a>
                         </td>
                      </tr>
                   </tbody>

@@ -29,23 +29,23 @@
                   <hr class="mb-5">
                   <div class="form-group">
                      <label for="cadastro-produto-nome">Nome do Produto</label>
-                     <input type="text" class="form-control border-0 bg-light" id="cadastro-produto-nome" placeholder="Digite o nome do produto desejado" th:field="*{nome}" th:value="*{nome}"/>
+                     <input type="text" class="form-control border-0 bg-light" id="cadastro-produto-nome" placeholder="Digite o nome do produto desejado" th:field="*{productName}" th:value="*{productName}"/>
                   </div>
                   <div th:if="${tipo == 0}" class="form-group">
                      <label for="cadastro-produto-brand">Marca</label>
                      <select class="form-control border-0 bg-light" id="cadastro-produto-brand" th:field="*{brand}">
                         <option value="" disabled selected>Select uma marca</option>
-                        <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.Marca}"></option>
+                        <option th:each="brand : ${brands}" th:value="${brand.brandId}" th:text="${brand.brandName}"></option>
                      </select>
                   </div>
 				  <div th:if="${tipo != 0}" class="form-group">
 				  					   <label for="cadastro-produto-country">Marca</label>
-				  					   <select class="form-control border-0 bg-light" th:field="*{brand.id}"  name="brand" id="brand"/>
+				  					   <select class="form-control border-0 bg-light" th:field="*{brand.brandId}"  name="brand" id="brand"/>
 				  					      <option value="" disabled selected>Select uma marca</option>
 				  					      <option th:each="brand : ${brands}" 
-				  					         th:selected="${brand.id == product.brand.id}"
-				  					         th:value="${brand.id}" 
-				  					         th:text="${brand.Marca}" >
+				  					         th:selected="${brand.brandId == product.brand}"
+				  					         th:value="${brand.brandId}" 
+				  					         th:text="${brand.brandName}" >
 				  					      </option>
 				  					   </select>
 				  					</div>	
@@ -53,29 +53,29 @@
                      <label for="cadastro-produto-category">Categoria</label>
                      <select class="form-control border-0 bg-light" id="cadastro-produto-category" th:field="*{category}">
                         <option value="" disabled selected>Select uma categoria</option>
-                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoria}"></option>
+                        <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
                      </select>
                   </div>
 				  <div th:if="${tipo != 0}" class="form-group">
 				  					   <label for="cadastro-produto-country">Categoria</label>
-				  					   <select class="form-control border-0 bg-light" th:field="*{category.id}"  name="category" id="category"/>
+				  					   <select class="form-control border-0 bg-light" th:field="*{category.categoryId}"  name="category" id="category"/>
 				  						  <option value="" disabled selected>Select uma categoria</option>
 				  						  <option th:each="category : ${categories}" 
-				  								  th:selected="${category.id == product.category.id}"
-				  								  th:value="${category.id}" 
-				  								  th:text="${category.categoria}" >
+				  								  th:selected="${category.categoryId == product.category}"
+				  								  th:value="${category.categoryId}" 
+				  								  th:text="${category.categoryName}" >
 				  						  </option>
 				  					   </select>
 				  					</div>	
                   <div class="form-group">
                      <label for="cadastro-produto-valor">Valor</label>
-                     <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-valor" placeholder="Valor do produto" th:field="*{valor}" th:value="*{valor}" />
+                     <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-valor" placeholder="Valor do produto" th:field="*{price}" th:value="*{price}" />
                   </div>
                   <div class="form-group">
                      <label for="cadastro-produto-estoque">Quantidade de Estoque</label>
-                     <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-estoque" placeholder="Quantos items possui no estoque" th:field="*{quantidade}" th:value="*{quantidade}" />
+                     <input type="number" min="1" step="any" class="form-control border-0 bg-light" id="cadastro-produto-estoque" placeholder="Quantos items possui no estoque" th:field="*{amount}" th:value="*{amount}" />
                   </div>
-                  <input type="checkbox" id="cadastro-produto-isAtivo" th:field="*{ativo}" value="true" checked hidden="true" />
+                  <input type="checkbox" id="cadastro-produto-isAtivo" th:field="*{enabled}" value="true" checked hidden="true" />
                   <!-- <div th:if="${produto.imagens != null}">
                      <table class="table">
                      <thead>

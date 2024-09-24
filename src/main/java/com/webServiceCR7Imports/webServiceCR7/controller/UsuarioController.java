@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.webServiceCR7Imports.webServiceCR7.dto.UsuarioInput;
+import com.webServiceCR7Imports.webServiceCR7.model.dto.UsuarioInput;
 import com.webServiceCR7Imports.webServiceCR7.model.Usuario;
 import com.webServiceCR7Imports.webServiceCR7.service.UsuarioService;
 

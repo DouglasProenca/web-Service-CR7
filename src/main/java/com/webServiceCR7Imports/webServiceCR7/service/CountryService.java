@@ -2,23 +2,17 @@ package com.webServiceCR7Imports.webServiceCR7.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.webServiceCR7Imports.webServiceCR7.model.Country;
-import com.webServiceCR7Imports.webServiceCR7.repository.CountryRepository;
-
-
 
 @Service
-public class CountryService {
-
+@FeignClient(name = "country", url = "http://localhost:8088/apicr7imports/private/country")
+public interface CountryService {
 	
-	@Autowired
-	CountryRepository repository;
-	
-	public List<Country> findAll() {
-		return repository.retornaUsuario();
-	}
+	@GetMapping
+	List<Country> findAll();
 
 }
