@@ -1,8 +1,5 @@
 package com.webServiceCR7Imports.webServiceCR7.controller;
 
-import java.security.Principal;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,69 +16,63 @@ import com.webServiceCR7Imports.webServiceCR7.enums.BrandTemplateshttp;
 import com.webServiceCR7Imports.webServiceCR7.model.dto.BrandRequest;
 import com.webServiceCR7Imports.webServiceCR7.service.BrandService;
 import com.webServiceCR7Imports.webServiceCR7.service.CountryService;
-import com.webServiceCR7Imports.webServiceCR7.service.UsuarioService;
+
+import lombok.AllArgsConstructor;
 
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/admin/brand")
 public class BrandController {
 
-	@Autowired
-	BrandService brandservice;
-	
-	@Autowired
-	UsuarioService usuarioService;
-	
-	@Autowired
-	CountryService countryService;
+	private final BrandService brandservice;
+	private final CountryService countryService;
 
 	
 	@GetMapping
-	public String brandsList(Model model, Principal principal) {
-	    model.addAttribute("principal",usuarioService.findByEmail(principal.getName()));
+	public String brandsList(Model model) {
 	    model.addAttribute("brandList", brandservice.findAll());
-		return BrandTemplateshttp.painel.getAdress();
+		return BrandTemplateshttp.PAINEL.toString();
 	}
 	
 	@GetMapping("/find")
-	public String searchBrands(@RequestParam("brand") String brandName,Model model, Principal principal) throws Exception {
-	    model.addAttribute("principal",usuarioService.findByEmail(principal.getName()));
+	public String searchBrands(@RequestParam("brand") String brandName,Model model) throws Exception {
 	    model.addAttribute("brandList", brandservice.findByName(brandName));
-		return BrandTemplateshttp.painel.getAdress();
+		return BrandTemplateshttp.PAINEL.toString();
 	}
 	
 	@GetMapping("/form")
-	public String form(BrandRequest brand,Model model) {
+	public String form(Model model) {
 		model.addAttribute("brand", new BrandRequest());
 		model.addAttribute("countries", countryService.findAll());
 		model.addAttribute("tipo",0);
-		return BrandTemplateshttp.registrer.getAdress();
+		return BrandTemplateshttp.REGISTER.toString();
 	}
 	
 	@PostMapping("/newBrand")
-	public String newBrand(BrandRequest brand, Principal principal) {
+	public String newBrand(BrandRequest brand) {
 		brandservice.save(brand);
-		return BrandTemplateshttp.redirect.getAdress();
+		return BrandTemplateshttp.REDIRECT.toString();
 	}
 	
 	@GetMapping("/{id}")
-	public String formUpdateBrand(@PathVariable Integer id, Principal principal, Model model) throws Exception {
+	public String formUpdateBrand(@PathVariable Integer id, Model model) throws Exception {
 		model.addAttribute("brand", new BrandRequest(brandservice.findOne(id)));
 		model.addAttribute("id", id);
 		model.addAttribute("countriesList", countryService.findAll());
-		return BrandTemplateshttp.registrer.getAdress();		
+		return BrandTemplateshttp.REGISTER.toString();		
 	}
 	
 	@PostMapping("/{id}/editBrand")
-	public String editBrand(@PathVariable Integer id, Principal principal, BrandRequest brand) throws Exception {
+	public String editBrand(@PathVariable Integer id, BrandRequest brand) throws Exception {
 		brandservice.update(id, brand);
-		return BrandTemplateshttp.redirect.getAdress();
+		return BrandTemplateshttp.REDIRECT.toString();
 	}
 	
 	@GetMapping("/{id}/delete")
-	public String deleteBrand(@PathVariable Integer id, Principal principal) {
+	public String deleteBrand(@PathVariable Integer id) {
 		brandservice.deleteById(id);
-		return BrandTemplateshttp.redirect.getAdress();
+		return BrandTemplateshttp.REDIRECT.toString();
 	}
 	
 	@GetMapping("/excel")

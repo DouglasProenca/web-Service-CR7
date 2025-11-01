@@ -1,30 +1,19 @@
 package com.webServiceCR7Imports.webServiceCR7.enums;
 
-public enum BrandTemplateshttp implements httpAdressTemplatInterface {
+import lombok.AllArgsConstructor;
 
-	painel {
+@AllArgsConstructor
+public enum BrandTemplateshttp {
 
-		@Override
-		public String getAdress() {
-			return "brand/painel-brand";
-		}
+	PAINEL("brand/painel-brand"),
+    REGISTER("brand/cadastro-brand"),
+    REDIRECT("redirect:/admin/brand/");
 
-	},
-	
-	registrer {
+    private final String address;
 
-		@Override
-		public String getAdress() {
-			return "brand/cadastro-brand";
-		}
-	},
-	
-	redirect {
-
-		@Override
-		public String getAdress() {
-			return "redirect:/admin/brand/";
-		}
+	@Override
+	public String toString() {
+		return address;
 	}
 
 }

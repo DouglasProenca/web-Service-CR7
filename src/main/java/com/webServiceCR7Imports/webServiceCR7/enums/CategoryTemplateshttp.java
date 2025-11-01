@@ -1,30 +1,19 @@
 package com.webServiceCR7Imports.webServiceCR7.enums;
 
-public enum CategoryTemplateshttp implements httpAdressTemplatInterface {
+import lombok.AllArgsConstructor;
 
-	painel {
+@AllArgsConstructor
+public enum CategoryTemplateshttp {
 
-		@Override
-		public String getAdress() {
-			return "category/painel-category";
-		}
-
-	},
+	PAINEL("category/painel-category"),
+	REGISTER("category/cadastro-category"),
+	REDIRECT("redirect:/admin/category/");
 	
-	registrer {
+    private final String address;
 
-		@Override
-		public String getAdress() {
-			return "category/cadastro-category";
-		}
-	},
-	
-	redirect {
-
-		@Override
-		public String getAdress() {
-			return "redirect:/admin/category/";
-		}
+	@Override
+	public String toString() {
+		return address;
 	}
 
 }

@@ -1,9 +1,7 @@
 package com.webServiceCR7Imports.webServiceCR7.controller;
 
-import java.security.Principal;
 import java.time.LocalDate;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,80 +20,72 @@ import com.webServiceCR7Imports.webServiceCR7.model.Product;
 import com.webServiceCR7Imports.webServiceCR7.service.BrandService;
 import com.webServiceCR7Imports.webServiceCR7.service.CategoryService;
 import com.webServiceCR7Imports.webServiceCR7.service.ProductService;
-import com.webServiceCR7Imports.webServiceCR7.service.UsuarioService;
+
+import lombok.AllArgsConstructor;
 
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("admin/product")
 public class ProductController {
 	
-	@Autowired
-	ProductService productService;
-	
-	@Autowired
-	UsuarioService usuarioService;
-	
-	@Autowired
-	BrandService BrandService;
-	
-	@Autowired
-	CategoryService categoryService;
+	private final ProductService productService;
+	private final BrandService BrandService;
+	private final CategoryService categoryService;
 
 	
 	@GetMapping("/list/{page}")
-	public String productsList(Model model, Principal principal,@PathVariable Integer page) {
-	    model.addAttribute("principal",usuarioService.findByEmail(principal.getName()));
+	public String productsList(Model model, @PathVariable Integer page) {
 	    model.addAttribute("productList",productService.pagelist(page == null? 0: page));
 	    model.addAttribute("tipo", 0);
-		return ProductTemplateshttp.painel.getAdress();
+		return ProductTemplateshttp.PAINEL.toString();
 	}
 	
 	
 	@GetMapping("/find/{page}")
-	public String searchProducts(@RequestParam("product") String productName,Model model, Principal principal,@PathVariable Integer page) throws Exception {		
-		model.addAttribute("principal",usuarioService.findByEmail(principal.getName()));
+	public String searchProducts(@RequestParam("product") String productName, Model model ,@PathVariable Integer page) throws Exception {		
 	    model.addAttribute("productList",productService.findByNamePage(productName,page == null? 0: page));
 	    model.addAttribute("tipo", 1);
 	    model.addAttribute("pesquisa",productName);
-		return ProductTemplateshttp.painel.getAdress();
+		return ProductTemplateshttp.PAINEL.toString();
 	}
 	
 	@GetMapping("/form/{totalPages}")
-	public String form(Product product,Model model,@PathVariable Integer totalPages) {
+	public String form(Model model, @PathVariable Integer totalPages) {
 		model.addAttribute("brands", BrandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("tipo",0);
 		model.addAttribute("product", new ProductRequest());
-		return ProductTemplateshttp.registrer.getAdress();
+		return ProductTemplateshttp.REGISTER.toString();
 	}
 	
 	@PostMapping("/newProduct/{totalPages}")
-	public String newProduct(ProductRequest product, Principal principal,@PathVariable Integer totalPages) {
+	public String newProduct(ProductRequest product, @PathVariable Integer totalPages) {
 		productService.save(new ProductRequest(product.getProductName(), product.getBrand(), product.getPrice(), product.getAmount(), true, LocalDate.now(), product.getCategory()));	
-		return ProductTemplateshttp.redirect.getAdress()+totalPages;
+		return ProductTemplateshttp.REDIRECT.toString()+totalPages;
 	}
 	
 	@GetMapping("/{id}/{page}")
-	public String formUpdateBrand(@PathVariable Integer id, @PathVariable Integer page, Principal principal, Model model) throws Exception {
+	public String formUpdateProduct(@PathVariable Integer id, @PathVariable Integer page, Model model) throws Exception {
 		model.addAttribute("product", productService.findOne(id));
 		model.addAttribute("id", id);
 		model.addAttribute("page", page);
 		model.addAttribute("brands", BrandService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		return ProductTemplateshttp.registrer.getAdress();	
+		return ProductTemplateshttp.REGISTER.toString();	
 	}
 	
 	@PostMapping("/{id}/statusproduct/{page}")
-	public String statusProduct(@PathVariable Integer id,@PathVariable Integer page, Principal principal) throws Exception {
+	public String statusProduct(@PathVariable Integer id, @PathVariable Integer page) throws Exception {
 		Product product = productService.findOne(id);
 		product.setEnabled(!product.getEnabled());
 		productService.update(id, new ProductRequest());
-		return ProductTemplateshttp.redirect.getAdress()+ page;
+		return ProductTemplateshttp.REDIRECT.toString()+ page;
 	}
 	
 	@PostMapping("/{id}/editProduct/{page}")
-	public String editProduct(@PathVariable Integer id,@RequestParam("product") String productName,@PathVariable Integer page, Principal principal, Product product) throws Exception {
+	public String editProduct(@PathVariable Integer id, @RequestParam("product") String productName ,@PathVariable Integer page, Product product) throws Exception {
 		productService.findOne(id);
 		
 		ProductRequest productRequestUpdate = new ProductRequest();
@@ -109,13 +99,13 @@ public class ProductController {
 		productRequestUpdate.setCategory(product.getCategory().getCategoryId());
 		
 		productService.update(id,productRequestUpdate);
-		return ProductTemplateshttp.redirect.getAdress()+ page;
+		return ProductTemplateshttp.REDIRECT.toString()+ page;
 	}
 	
 	@GetMapping("/{id}/delete")
-	public String deleteBrand(@PathVariable Integer id, Principal principal) {
+	public String deleteBrand(@PathVariable Integer id) {
 		productService.delete(id);	
-		return ProductTemplateshttp.redirect.getAdress();
+		return ProductTemplateshttp.REDIRECT.toString();
 	}
 	
 	@GetMapping("/excel")

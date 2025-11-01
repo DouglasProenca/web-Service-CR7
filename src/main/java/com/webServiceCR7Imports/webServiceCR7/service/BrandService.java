@@ -16,15 +16,14 @@ import com.webServiceCR7Imports.webServiceCR7.model.dto.BrandRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.Brand;
 
 @Service
-@FeignClient(name = "brand", url = "http://localhost:8088/apicr7imports/private/brand")
+@FeignClient(name = "brand", url = "http://localhost:8888/apicr7imports/private/brand")
 public interface BrandService {
 
 	@GetMapping
     List<Brand> findAll();
 
-	@GetMapping("/searchbrand?marca")
-	List<Brand> findByName(@RequestParam("marca") String name);
-	
+	@GetMapping("/searchbrand?brand")
+	List<Brand> findByName(@RequestParam("brand") String name);
 
 	@PostMapping
 	Brand save(@RequestBody BrandRequest brandRequest);

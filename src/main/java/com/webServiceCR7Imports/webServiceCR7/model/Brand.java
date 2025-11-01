@@ -2,6 +2,8 @@ package com.webServiceCR7Imports.webServiceCR7.model;
 
 import java.util.Date;
 
+import com.webServiceCR7Imports.webServiceCR7.model.response.CountryResponse;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +15,7 @@ public class Brand {
 
 	Integer brandId;
 	String brandName;
-	Country country;
+	CountryResponse country;
 	Date date;
 	Usuario user;
 	

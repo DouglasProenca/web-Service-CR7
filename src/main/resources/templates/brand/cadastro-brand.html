@@ -43,7 +43,7 @@
 					<select class="form-control border-0 bg-light" id="cadastro-marca-country" th:field="*{country}">
 					      <option value="" disabled selected>Select um Pais</option>
 					      <option th:each="country : ${countries}" th:value="${country.idCountry}" th:text="${country.namePort}"></option>
-					</select>ƒ
+					</select>
 					</div>
 					<div th:if="${tipo != 0}" class="form-group">
 					                     <label for="country">Pais</label>

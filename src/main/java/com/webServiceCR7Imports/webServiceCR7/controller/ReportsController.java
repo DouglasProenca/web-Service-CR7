@@ -1,7 +1,5 @@
 package com.webServiceCR7Imports.webServiceCR7.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webServiceCR7Imports.webServiceCR7.service.ReportService;
 
+import lombok.AllArgsConstructor;
+
 @Controller
+@AllArgsConstructor
 @RequestMapping("/admin/report")
 public class ReportsController {
 
-	@Autowired
-	ReportService reportService;
+	private final ReportService reportService;
 	
 	@GetMapping("/analytical")
 	public ResponseEntity<byte[]>getAnalyticalReport(@RequestParam("analitico-data-inicial") String dataIni

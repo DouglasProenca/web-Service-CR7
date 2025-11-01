@@ -1,12 +1,10 @@
-package com.webServiceCR7Imports.webServiceCR7.model.dto;
+package com.webServiceCR7Imports.webServiceCR7.model.request;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AcessRequest {

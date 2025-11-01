@@ -9,7 +9,7 @@ import com.webServiceCR7Imports.webServiceCR7.model.dto.BrandRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.dto.MailRequest;
 
 @Service
-@FeignClient(name = "mail", url = "http://localhost:8088/apicr7imports/private/mail")
+@FeignClient(name = "mail", url = "http://localhost:8888/apicr7imports/private/mail")
 public interface EmailService {
 
 	@PostMapping

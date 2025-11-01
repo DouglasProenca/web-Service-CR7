@@ -1,5 +1,7 @@
 package com.webServiceCR7Imports.webServiceCR7.model;
 
+import com.webServiceCR7Imports.webServiceCR7.model.response.CategoryResponse;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ public class Product {
 	String productName;
 	Integer amount;
 	Brand brand;
-	Category category;
+	CategoryResponse category;
 	Double price;
 	Usuario user;
 	Boolean enabled;	

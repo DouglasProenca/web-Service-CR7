@@ -3,20 +3,17 @@ package com.webServiceCR7Imports.webServiceCR7.security;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+import lombok.AllArgsConstructor;
+
 import java.util.Collection;
 
+@AllArgsConstructor
 public class TokenAuthentication implements Authentication {
 	
     private static final long serialVersionUID = 1L;
-	private  String token;
+	private String token;
     private boolean authenticated;
     private final String name;
-
-    public TokenAuthentication(String token, boolean authenticated, String name) {
-        this.token = token;
-        this.authenticated = authenticated;
-        this.name = name;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

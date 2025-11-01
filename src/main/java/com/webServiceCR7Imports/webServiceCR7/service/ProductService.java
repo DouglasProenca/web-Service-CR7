@@ -15,7 +15,7 @@ import com.webServiceCR7Imports.webServiceCR7.model.dto.ProductResponsePaginatio
 import com.webServiceCR7Imports.webServiceCR7.model.Product;
 
 @Service
-@FeignClient(name = "product", url = "http://localhost:8088/apicr7imports/private/product")
+@FeignClient(name = "product", url = "http://localhost:8888/apicr7imports/private/product")
 public interface ProductService {
 	
 	@GetMapping("/pagelist?page=")

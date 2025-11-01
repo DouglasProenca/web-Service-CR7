@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webServiceCR7Imports.webServiceCR7.model.dto.CategoryRequest;
-import com.webServiceCR7Imports.webServiceCR7.model.Category;
+import com.webServiceCR7Imports.webServiceCR7.model.request.CategoryRequest;
+import com.webServiceCR7Imports.webServiceCR7.model.response.CategoryResponse;
 
 @Service
-@FeignClient(name = "category", url = "http://localhost:8088/apicr7imports/private/category")
+@FeignClient(name = "category", url = "http://localhost:8888/apicr7imports/private/category")
 public interface CategoryService {
 
 
 	@GetMapping
-    List<Category> findAll();
+    List<CategoryResponse> findAll();
 
 	@GetMapping("/searchcategory?categoria")
-	List<Category> findByName(@RequestParam("categoria") String name);
+	List<CategoryResponse> findByName(@RequestParam("categoria") String name);
 
 	@PostMapping
-	Category save(@RequestBody CategoryRequest categoryRequest);
+	CategoryResponse save(@RequestBody CategoryRequest categoryRequest);
 	
 	@GetMapping("/{id}")
-	Optional<Category> findOne(@PathVariable("id") Integer id);
+	Optional<CategoryResponse> findOne(@PathVariable("id") Integer id);
 
 	@DeleteMapping("/{id}")
 	String delete(@PathVariable("id") Integer id);
 
 	@PatchMapping(value = "/{id}")
-	Category update(@PathVariable("id") Integer id, @RequestBody CategoryRequest categoryRequestUpdate);
+	CategoryResponse update(@PathVariable("id") Integer id, @RequestBody CategoryRequest categoryRequestUpdate);
 	
 	@GetMapping("/excel")
 	byte[] getExcel();

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
-@FeignClient(name = "reports", url = "http://localhost:8088/apicr7imports/private/jasper")
+@FeignClient(name = "reports", url = "http://localhost:8888/apicr7imports/private/jasper")
 public interface ReportService {
 	
 	@GetMapping("/analyticalReport?dateini&datefin")
