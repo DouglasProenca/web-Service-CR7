@@ -28,10 +28,10 @@ public interface ProductService {
 	ProductResponsePagination findByNamePage(@RequestParam("product") String name,@RequestParam("page") Integer pagina);
 
 	@GetMapping("/{id}")
-	Product findOne(@PathVariable("id") Integer id);
+	Product findOne(@PathVariable Integer id);
 
 	@DeleteMapping("/{id}")
-	void delete(@PathVariable("id") Integer id);
+	void delete(@PathVariable Integer id);
 	
 
 	@PutMapping("/{id}")

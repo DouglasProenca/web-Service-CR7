@@ -43,7 +43,7 @@ public class CategoryController {
 	public String form(CategoryRequest category,Model model) {
 		model.addAttribute("category", new CategoryRequest());
 		model.addAttribute("tipo",0);
-		return CategoryTemplateshttp.REDIRECT.toString();
+		return CategoryTemplateshttp.REGISTER.toString();
 	}
 	
 	@PostMapping("/newCategory")

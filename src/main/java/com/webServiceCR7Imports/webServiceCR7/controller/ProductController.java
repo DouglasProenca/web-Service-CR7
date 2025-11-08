@@ -85,7 +85,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/{id}/editProduct/{page}")
-	public String editProduct(@PathVariable Integer id, @RequestParam("product") String productName ,@PathVariable Integer page, Product product) throws Exception {
+	public String editProduct(@PathVariable Integer id, @PathVariable Integer page, Product product) throws Exception {
 		productService.findOne(id);
 		
 		ProductRequest productRequestUpdate = new ProductRequest();
