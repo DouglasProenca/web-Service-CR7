@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webServiceCR7Imports.webServiceCR7.enums.CategoryTemplateshttp;
-import com.webServiceCR7Imports.webServiceCR7.mapper.DozerMapper;
 import com.webServiceCR7Imports.webServiceCR7.model.request.CategoryRequest;
 import com.webServiceCR7Imports.webServiceCR7.service.CategoryService;
 
@@ -26,7 +25,6 @@ public class CategoryController {
 	
 	private final CategoryService categoryService;
 
-	
 	@GetMapping
 	public String categoryList(Model model) {
 		model.addAttribute("categoryList", categoryService.findAll());
@@ -54,7 +52,7 @@ public class CategoryController {
 	
 	@GetMapping("/{id}")
 	public String formUpdateCategory(@PathVariable Integer id, Model model) throws Exception {
-		model.addAttribute("category", DozerMapper.parseObject(categoryService.findOne(id).get(), CategoryRequest.class));
+		model.addAttribute("category", categoryService.findOne(id).get());
 		model.addAttribute("categoryId", id);
 		return CategoryTemplateshttp.REGISTER.toString();
 	}

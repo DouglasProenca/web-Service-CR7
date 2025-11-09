@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webServiceCR7Imports.webServiceCR7.model.dto.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.dto.ProductResponsePagination;
+import com.webServiceCR7Imports.webServiceCR7.model.request.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.Product;
 
 @Service
@@ -24,7 +24,7 @@ public interface ProductService {
 	@PostMapping
 	void save(@RequestBody ProductRequest productRequest);
 	
-	@GetMapping("/pagelist/searchproduct?product=&page=&limit=")
+	@GetMapping("/pagelist/searchproduct?product=&page=")
 	ProductResponsePagination findByNamePage(@RequestParam("product") String name,@RequestParam("page") Integer pagina);
 
 	@GetMapping("/{id}")

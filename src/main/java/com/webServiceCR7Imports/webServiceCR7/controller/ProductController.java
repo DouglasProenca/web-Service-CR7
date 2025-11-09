@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webServiceCR7Imports.webServiceCR7.enums.ProductTemplateshttp;
-import com.webServiceCR7Imports.webServiceCR7.model.dto.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.Product;
+import com.webServiceCR7Imports.webServiceCR7.model.request.ProductRequest;
 import com.webServiceCR7Imports.webServiceCR7.service.BrandService;
 import com.webServiceCR7Imports.webServiceCR7.service.CategoryService;
 import com.webServiceCR7Imports.webServiceCR7.service.ProductService;
@@ -68,7 +68,7 @@ public class ProductController {
 	
 	@GetMapping("/{id}/{page}")
 	public String formUpdateProduct(@PathVariable Integer id, @PathVariable Integer page, Model model) throws Exception {
-		model.addAttribute("product", productService.findOne(id));
+		model.addAttribute("product", new ProductRequest(productService.findOne(id)));
 		model.addAttribute("id", id);
 		model.addAttribute("page", page);
 		model.addAttribute("brands", BrandService.findAll());
@@ -80,25 +80,14 @@ public class ProductController {
 	public String statusProduct(@PathVariable Integer id, @PathVariable Integer page) throws Exception {
 		Product product = productService.findOne(id);
 		product.setEnabled(!product.getEnabled());
-		productService.update(id, new ProductRequest());
+		productService.update(id, new ProductRequest(product));
 		return ProductTemplateshttp.REDIRECT.toString()+ page;
 	}
 	
 	@PostMapping("/{id}/editProduct/{page}")
-	public String editProduct(@PathVariable Integer id, @PathVariable Integer page, Product product) throws Exception {
-		productService.findOne(id);
-		
-		ProductRequest productRequestUpdate = new ProductRequest();
-		//productRequestUpdate.set(id);
-		productRequestUpdate.setProductName(product.getProductName());
-		productRequestUpdate.setBrand(product.getBrand().getBrandId());
-		productRequestUpdate.setPrice(product.getPrice());
-		productRequestUpdate.setAmount(product.getAmount());
-		productRequestUpdate.setEnabled(product.getEnabled());
-		productRequestUpdate.setDate(LocalDate.now());
-		productRequestUpdate.setCategory(product.getCategory().getCategoryId());
-		
-		productService.update(id,productRequestUpdate);
+	public String editProduct(@PathVariable Integer id, @PathVariable Integer page, ProductRequest productRequest) throws Exception {		
+		productRequest.setDate(LocalDate.now());
+		productService.update(id,productRequest);
 		return ProductTemplateshttp.REDIRECT.toString()+ page;
 	}
 	

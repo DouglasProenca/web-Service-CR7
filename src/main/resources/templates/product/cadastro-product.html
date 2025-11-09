@@ -40,7 +40,7 @@
                   </div>
 				  <div th:if="${tipo != 0}" class="form-group">
 				  					   <label for="cadastro-produto-country">Marca</label>
-				  					   <select class="form-control border-0 bg-light" th:field="*{brand.brandId}"  name="brand" id="brand"/>
+				  					   <select class="form-control border-0 bg-light" th:field="*{brand}"  name="brand" id="brand"/>
 				  					      <option value="" disabled selected>Select uma marca</option>
 				  					      <option th:each="brand : ${brands}" 
 				  					         th:selected="${brand.brandId == product.brand}"
@@ -58,7 +58,7 @@
                   </div>
 				  <div th:if="${tipo != 0}" class="form-group">
 				  					   <label for="cadastro-produto-country">Categoria</label>
-				  					   <select class="form-control border-0 bg-light" th:field="*{category.categoryId}"  name="category" id="category"/>
+				  					   <select class="form-control border-0 bg-light" th:field="*{category}"  name="category" id="category"/>
 				  						  <option value="" disabled selected>Select uma categoria</option>
 				  						  <option th:each="category : ${categories}" 
 				  								  th:selected="${category.categoryId == product.category}"
