@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.webServiceCR7Imports.webServiceCR7.model.dto.MailRequest;
-import com.webServiceCR7Imports.webServiceCR7.model.dto.MailResponse;
+import com.webServiceCR7Imports.webServiceCR7.model.request.MailRequest;
 import com.webServiceCR7Imports.webServiceCR7.service.EmailService;
 
 import lombok.AllArgsConstructor;
@@ -24,18 +24,16 @@ public class EmailController {
 	
 	@GetMapping
 	public String brandsList(Model model) {
-		model.addAttribute("mailRequest", new MailResponse());
+		model.addAttribute("mailRequest", new MailRequest());
 		return "email/painel-email";
 	}
 	
 	@PostMapping
-	public String sendMail(MailResponse mailResponse, Model model) throws IOException {
-		MailRequest mailRequest = new MailRequest();
-		mailRequest.setAssunto(mailResponse.getAssunto());
-		mailRequest.setDestinatario(mailResponse.getDestinatario());
-		mailRequest.setTexto(mailResponse.getTexto());
-		mailRequest.setAnexoTitulo(mailResponse.getAnexoFile().getOriginalFilename());
-		mailRequest.setAnexoFile(Base64.getEncoder().encodeToString(mailResponse.getAnexoFile().getBytes()));
+	public String sendMail(MailRequest mailRequest, MultipartFile anexo, Model model) throws IOException {
+		if (anexo != null) {
+	         mailRequest.setAttachmentTitle(anexo.getOriginalFilename());
+	         mailRequest.setAttachmentFile(Base64.getEncoder().encodeToString(anexo.getBytes()));
+		}
 		emailService.sendMail(mailRequest);
 		return "redirect:/admin/email";
 	}

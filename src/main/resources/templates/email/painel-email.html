@@ -30,20 +30,20 @@
                   <hr class="mb-5">
                   <div class="form-group">
                      <label for="cadastro-titulo">Título</label>
-                     <input type="text" class="form-control border-0 bg-light" id="cadastro-titulo" required="true" placeholder="Digite o título desejado" th:field="*{assunto}" />
+                     <input type="text" class="form-control border-0 bg-light" id="cadastro-titulo" required="true" placeholder="Digite o título desejado" th:field="*{subject}" />
                   </div>
 				  <div class="form-group">
 				     <label for="cadastro-destinatario">Destinatário</label>
-				     <input type="text" class="form-control border-0 bg-light" id="cadastro-destinatario" required="true" placeholder="Digite o e-mail do destinatário desejado" th:field="*{destinatario}"/>
+				     <input type="text" class="form-control border-0 bg-light" id="cadastro-destinatario" required="true" placeholder="Digite o e-mail do destinatário desejado" th:field="*{adress}"/>
 				  </div>
 				  <div class="form-group">
 				      <label for="cadastro-mensagem">Mensagem</label>
-				      <textarea type="text" rows="5" cols="33" class="form-control border-0 bg-light" id="cadastro-mensagem" placeholder="Digite a mensagem desejada" th:field="*{texto}"></textarea>
+				      <textarea type="text" rows="5" cols="33" class="form-control border-0 bg-light" id="cadastro-mensagem" placeholder="Digite a mensagem desejada" th:field="*{text}"></textarea>
 				  </div>
 				  <div class="form-group">
 					  <label for="cadastro-anexo">Anexo</label>
 				  	  <label for="cadastro-anexo" class="drop-container">Arraste para adicionar ou
-					  <input type="file" class="form-control border-0 bg-light" id="cadastro-anexo" th:field="*{anexoFile}">
+					  <input type="file" class="form-control border-0 bg-light" id="anexo" name="anexo">
 					  </label>
 				  </div>
                   <button type="submit" class="btn btn-outline-primary col-lg-12 mt-5">
