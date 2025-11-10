@@ -4,13 +4,11 @@ import java.util.Date;
 
 import com.webServiceCR7Imports.webServiceCR7.model.response.CountryResponse;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class Brand {
 
 	Integer brandId;

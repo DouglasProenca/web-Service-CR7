@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.webServiceCR7Imports.webServiceCR7.model.dto.BrandRequest;
-import com.webServiceCR7Imports.webServiceCR7.model.dto.MailRequest;
+import com.webServiceCR7Imports.webServiceCR7.model.request.MailRequest;
 
 @Service
 @FeignClient(name = "mail", url = "http://localhost:8888/apicr7imports/private/mail")

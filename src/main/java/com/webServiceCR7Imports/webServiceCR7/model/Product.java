@@ -3,14 +3,12 @@ package com.webServiceCR7Imports.webServiceCR7.model;
 import com.webServiceCR7Imports.webServiceCR7.model.response.CategoryResponse;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class Product {
 	
 	Integer productId;

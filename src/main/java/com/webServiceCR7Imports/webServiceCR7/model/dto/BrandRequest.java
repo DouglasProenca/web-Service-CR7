@@ -3,14 +3,12 @@ package com.webServiceCR7Imports.webServiceCR7.model.dto;
 import com.webServiceCR7Imports.webServiceCR7.model.Brand;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class BrandRequest {
 
     String brandName;
