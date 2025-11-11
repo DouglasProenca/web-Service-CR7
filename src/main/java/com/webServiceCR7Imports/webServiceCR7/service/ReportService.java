@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "reports", url = "http://localhost:8888/apicr7imports/private/jasper")
 public interface ReportService {
 	
-	@GetMapping("/analyticalReport?dateini&datefin")
-	byte[] getAnalyticalReport(@RequestParam("dateini") String dataIni,@RequestParam("datefin") String dataFin);
+	@GetMapping("/analyticalReport?initial_date&final_date")
+	byte[] getAnalyticalReport(@RequestParam("initial_date") String dataIni,@RequestParam("final_date") String dataFin);
 	
-	@GetMapping("/syntheticReport?dateini&datefin")
-	byte[] getSyntheticReport(@RequestParam("dateini") String dataIni,@RequestParam("datefin") String dataFin);
+	@GetMapping("/syntheticReport?dateini&final_date")
+	byte[] getSyntheticReport(@RequestParam("initial_date") String dataIni,@RequestParam("final_date") String dataFin);
 	
 	@GetMapping("/managentmentReport")
 	byte[] getManagentmentReport();

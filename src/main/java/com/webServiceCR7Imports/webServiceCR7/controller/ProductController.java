@@ -1,7 +1,5 @@
 package com.webServiceCR7Imports.webServiceCR7.controller;
 
-import java.time.LocalDate;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -62,8 +60,8 @@ public class ProductController {
 	
 	@PostMapping("/newProduct/{totalPages}")
 	public String newProduct(ProductRequest product, @PathVariable Integer totalPages) {
-		productService.save(new ProductRequest(product.getProductName(), product.getBrand(), product.getPrice(), product.getAmount(), true, LocalDate.now(), product.getCategory()));	
-		return ProductTemplateshttp.REDIRECT.toString()+totalPages;
+		productService.save(product);	
+		return ProductTemplateshttp.REDIRECT.toString() + totalPages;
 	}
 	
 	@GetMapping("/{id}/{page}")
@@ -81,14 +79,13 @@ public class ProductController {
 		Product product = productService.findOne(id);
 		product.setEnabled(!product.getEnabled());
 		productService.update(id, new ProductRequest(product));
-		return ProductTemplateshttp.REDIRECT.toString()+ page;
+		return ProductTemplateshttp.REDIRECT.toString() + page;
 	}
 	
 	@PostMapping("/{id}/editProduct/{page}")
 	public String editProduct(@PathVariable Integer id, @PathVariable Integer page, ProductRequest productRequest) throws Exception {		
-		productRequest.setDate(LocalDate.now());
 		productService.update(id,productRequest);
-		return ProductTemplateshttp.REDIRECT.toString()+ page;
+		return ProductTemplateshttp.REDIRECT.toString() + page;
 	}
 	
 	@GetMapping("/{id}/delete")
