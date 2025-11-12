@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webServiceCR7Imports.webServiceCR7.enums.BrandTemplateshttp;
-import com.webServiceCR7Imports.webServiceCR7.model.dto.BrandRequest;
+import com.webServiceCR7Imports.webServiceCR7.model.request.BrandRequest;
 import com.webServiceCR7Imports.webServiceCR7.service.BrandService;
 import com.webServiceCR7Imports.webServiceCR7.service.CountryService;
 

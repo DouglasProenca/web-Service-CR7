@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.webServiceCR7Imports.webServiceCR7.model.dto.BrandRequest;
 import com.webServiceCR7Imports.webServiceCR7.model.request.MailRequest;
 
 @Service
@@ -13,5 +12,5 @@ import com.webServiceCR7Imports.webServiceCR7.model.request.MailRequest;
 public interface EmailService {
 
 	@PostMapping
-	BrandRequest sendMail(@RequestBody MailRequest mailRequest);
+	void sendMail(@RequestBody MailRequest mailRequest);
 }

@@ -1,15 +1,15 @@
-package com.webServiceCR7Imports.webServiceCR7.model;
+package com.webServiceCR7Imports.webServiceCR7.model.response;
 
 import java.util.Date;
 
-import com.webServiceCR7Imports.webServiceCR7.model.response.CountryResponse;
+import com.webServiceCR7Imports.webServiceCR7.model.Usuario;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class Brand {
+public class BrandResponse {
 
 	Integer brandId;
 	String brandName;

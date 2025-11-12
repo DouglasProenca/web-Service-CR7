@@ -10,32 +10,31 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webServiceCR7Imports.webServiceCR7.model.dto.ProductResponsePagination;
 import com.webServiceCR7Imports.webServiceCR7.model.request.ProductRequest;
-import com.webServiceCR7Imports.webServiceCR7.model.Product;
+import com.webServiceCR7Imports.webServiceCR7.model.response.ProductResponse;
+import com.webServiceCR7Imports.webServiceCR7.model.response.ProductResponsePagination;
 
 @Service
 @FeignClient(name = "product", url = "http://localhost:8888/apicr7imports/private/product")
 public interface ProductService {
 	
 	@GetMapping("/pagelist?page=")
-    ProductResponsePagination pagelist(@RequestParam("page") Integer pagina);
+	ProductResponsePagination pagelist(@RequestParam("page") Integer pagina);
 
 	@PostMapping
-	void save(@RequestBody ProductRequest productRequest);
+	ProductResponse save(@RequestBody ProductRequest productRequest);
 	
 	@GetMapping("/pagelist/searchproduct?product=&page=")
 	ProductResponsePagination findByNamePage(@RequestParam("product") String name,@RequestParam("page") Integer pagina);
 
 	@GetMapping("/{id}")
-	Product findOne(@PathVariable Integer id);
+	ProductResponse findOne(@PathVariable Integer id);
 
 	@DeleteMapping("/{id}")
 	void delete(@PathVariable Integer id);
 	
-
 	@PutMapping("/{id}")
-	void update(@PathVariable Integer id, @RequestBody ProductRequest productRequestUpdate);
+	ProductResponse update(@PathVariable Integer id, @RequestBody ProductRequest productRequestUpdate);
 	
 	@GetMapping("/excel")
 	byte[] getExcel();

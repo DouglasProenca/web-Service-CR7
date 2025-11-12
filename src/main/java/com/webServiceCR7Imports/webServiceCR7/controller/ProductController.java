@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.webServiceCR7Imports.webServiceCR7.enums.ProductTemplateshttp;
-import com.webServiceCR7Imports.webServiceCR7.model.Product;
 import com.webServiceCR7Imports.webServiceCR7.model.request.ProductRequest;
+import com.webServiceCR7Imports.webServiceCR7.model.response.ProductResponse;
 import com.webServiceCR7Imports.webServiceCR7.service.BrandService;
 import com.webServiceCR7Imports.webServiceCR7.service.CategoryService;
 import com.webServiceCR7Imports.webServiceCR7.service.ProductService;
@@ -76,7 +76,7 @@ public class ProductController {
 	
 	@PostMapping("/{id}/statusproduct/{page}")
 	public String statusProduct(@PathVariable Integer id, @PathVariable Integer page) throws Exception {
-		Product product = productService.findOne(id);
+		ProductResponse product = productService.findOne(id);
 		product.setEnabled(!product.getEnabled());
 		productService.update(id, new ProductRequest(product));
 		return ProductTemplateshttp.REDIRECT.toString() + page;

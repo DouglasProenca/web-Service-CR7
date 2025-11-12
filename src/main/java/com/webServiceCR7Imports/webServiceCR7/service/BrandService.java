@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.webServiceCR7Imports.webServiceCR7.model.dto.BrandRequest;
-import com.webServiceCR7Imports.webServiceCR7.model.Brand;
+import com.webServiceCR7Imports.webServiceCR7.model.request.BrandRequest;
+import com.webServiceCR7Imports.webServiceCR7.model.response.BrandResponse;
 
 @Service
 @FeignClient(name = "brand", url = "http://localhost:8888/apicr7imports/private/brand")
 public interface BrandService {
 
 	@GetMapping
-    List<Brand> findAll();
+    List<BrandResponse> findAll();
 
 	@GetMapping("/searchbrand?brand")
-	List<Brand> findByName(@RequestParam("brand") String name);
+	List<BrandResponse> findByName(@RequestParam("brand") String name);
 
 	@PostMapping
-	Brand save(@RequestBody BrandRequest brandRequest);
+	BrandResponse save(@RequestBody BrandRequest brandRequest);
 	
 	@GetMapping("/{id}")
-	Brand findOne(@PathVariable Integer id);
+	BrandResponse findOne(@PathVariable Integer id);
 	
 
 	@DeleteMapping("/{id}")
 	void deleteById(@PathVariable Integer id);
 
 	@PutMapping(value = "/{id}")
-	Brand update(@PathVariable Integer id, @RequestBody BrandRequest categoryRequestUpdate);
+	BrandResponse update(@PathVariable Integer id, @RequestBody BrandRequest categoryRequestUpdate);
 	
 	@GetMapping("/excel")
 	byte[] getExcel();

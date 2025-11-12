@@ -1,6 +1,6 @@
-package com.webServiceCR7Imports.webServiceCR7.model.dto;
+package com.webServiceCR7Imports.webServiceCR7.model.request;
 
-import com.webServiceCR7Imports.webServiceCR7.model.Brand;
+import com.webServiceCR7Imports.webServiceCR7.model.response.BrandResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class BrandRequest {
     String brandName;
     Integer country;
     
-    public BrandRequest(Brand brand) {
+    public BrandRequest(BrandResponse brand) {
     	this.brandName = brand.getBrandName();
     	this.country = brand.getCountry().getIdCountry();		
     }

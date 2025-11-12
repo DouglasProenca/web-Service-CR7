@@ -1,8 +1,6 @@
-package com.webServiceCR7Imports.webServiceCR7.model.dto;
+package com.webServiceCR7Imports.webServiceCR7.model.response;
 
 import java.util.List;
-
-import com.webServiceCR7Imports.webServiceCR7.model.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +13,7 @@ import lombok.Setter;
 @Setter
 public class ProductResponsePagination {
 
-	List<Product> content;
+	List<ProductResponse> content;
 	Integer number;
 	Integer pageSize;
 	Boolean last;

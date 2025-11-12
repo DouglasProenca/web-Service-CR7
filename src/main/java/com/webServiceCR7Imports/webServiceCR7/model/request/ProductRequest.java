@@ -1,6 +1,6 @@
 package com.webServiceCR7Imports.webServiceCR7.model.request;
 
-import com.webServiceCR7Imports.webServiceCR7.model.Product;
+import com.webServiceCR7Imports.webServiceCR7.model.response.ProductResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class ProductRequest {
 	Boolean enabled;
 	Integer category;
 	
-    public ProductRequest(Product product) {
+    public ProductRequest(ProductResponse product) {
     	this.productName = product.getProductName();
     	this.brand = product.getBrand().getBrandId();
     	this.price = product.getPrice();
